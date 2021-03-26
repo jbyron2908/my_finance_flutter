@@ -1,31 +1,64 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
+import 'package:my_finance_flutter_3/core/data_source/database/memory/database_client.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/account/account_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/category/category_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/label/label_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/operation/operation_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
 
+final databaseProvider = Provider.autoDispose<DatabaseClient>((ref) {
+  var databaseClient = MemoryDatabaseClient();
+  return databaseClient;
+});
 
-// class AppController {
-//   static AppController find(BuildContext context) => Provider.of(context);
+final profileRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return ProfileRepository(database);
+  },
+);
 
-//   late DatabaseClient databaseClient;
+final accountRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return AccountRepository(database);
+  },
+);
 
-//   late ProfileRepository profileRepository;
-//   late AccountRepository accountRepository;
-//   late CategoryRepository categoryRepository;
-//   late PayeeRepository payeeRepository;
-//   late LabelRepository labelRepository;
+final categoryRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return CategoryRepository(database);
+  },
+);
 
-//   late OperationRepository operationRepository;
-//   late TemplateOperationRepository templateOperationRepository;
+final payeeRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return PayeeRepository(database);
+  },
+);
 
-//   Future setup() async {
-//     databaseClient = MemoryDatabaseClient();
-//     await databaseClient.setup();
+final labelRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return LabelRepository(database);
+  },
+);
 
-//     profileRepository = ProfileRepository(databaseClient);
-//     accountRepository = AccountRepository(databaseClient);
-//     categoryRepository = CategoryRepository(databaseClient);
-//     payeeRepository = PayeeRepository(databaseClient);
-//     labelRepository = LabelRepository(databaseClient);
+final operationRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return OperationRepository(database);
+  },
+);
 
-//     operationRepository = OperationRepository(databaseClient);
-//     templateOperationRepository = TemplateOperationRepository(databaseClient);
-//   }
-// }
+final templateOperationRepositoryProvider = Provider(
+  (ref) {
+    var database = ref.read(databaseProvider);
+    return TemplateOperationRepository(database);
+  },
+);
