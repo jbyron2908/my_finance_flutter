@@ -24,6 +24,7 @@ class FloatingPanel extends StatelessWidget {
     var bloc = context.read(floatingPanelBlocProvider);
     return Stack(
       children: [
+        child,
         if (leftAction != null)
           Align(
             alignment: Alignment.bottomLeft,
@@ -48,7 +49,6 @@ class FloatingPanel extends StatelessWidget {
               child: rightAction!(bloc),
             ),
           ),
-        child,
       ],
     );
   }
@@ -68,7 +68,7 @@ class FloatingPanelAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, watch, child) {
-        var isHidden = watch(floatingPanelBlocProvider.state);
+        var isHidden = watch(floatingPanelBlocProvider).isHidden;
         return AnimatedOpacity(
           opacity: isHidden ? 0 : 1,
           duration: Duration(milliseconds: 300),

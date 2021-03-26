@@ -13,24 +13,34 @@ class MainPage extends StatelessWidget {
       routes: [PlaygroundRouter(), DebugRouter(), ManagerRouter()],
       builder: (context, child, animation) {
         return FloatingPanel(
-          centerAction: (_) => CircleButton(
-            onPressed: () {
-              var tabsRouter = context.tabsRouter;
-              var activeIndex = tabsRouter.activeIndex;
-              activeIndex = (activeIndex + 1) % 3;
-              tabsRouter.setActiveIndex(activeIndex);
-            },
-            child: Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
-          ),
+          centerAction: (_) {
+            return GestureDetector(
+              onVerticalDragEnd: (details) {
+                print('onVerticalDragEnd - ${details.primaryVelocity}');
+                var velocity = (details.primaryVelocity ?? 1);
+                if (velocity > 0) {
+                  incrementIndex(context);
+                } else {
+                  decreaseIndex(context);
+                }
+              },
+              child: CircleButton(
+                onPressed: () {
+                  // incrementIndex(context);
+                },
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+              ),
+            );
+          },
           child: Scaffold(
             body: child,
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 var bloc = context.read(floatingPanelBlocProvider);
-                bloc.show();
+                bloc.toggle();
               },
             ),
             // bottomNavigationBar: buildBottomNavigationBar(tabsRouter),
@@ -38,6 +48,22 @@ class MainPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void incrementIndex(BuildContext context) {
+    var tabsRouter = context.tabsRouter;
+    var routeNumber = tabsRouter.routeCollection.routes.length;
+    var activeIndex = tabsRouter.activeIndex;
+    activeIndex = (activeIndex + 1) % routeNumber;
+    tabsRouter.setActiveIndex(activeIndex);
+  }
+
+  void decreaseIndex(BuildContext context) {
+    var tabsRouter = context.tabsRouter;
+    var routeNumber = tabsRouter.routeCollection.routes.length;
+    var activeIndex = tabsRouter.activeIndex - 1;
+    activeIndex = activeIndex == -1 ? routeNumber - 1 : activeIndex;
+    tabsRouter.setActiveIndex(activeIndex);
   }
 
   BottomNavigationBar buildBottomNavigationBar(TabsRouter tabsRouter) {

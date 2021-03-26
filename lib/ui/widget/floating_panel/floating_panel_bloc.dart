@@ -1,25 +1,32 @@
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final floatingPanelBlocProvider = StateNotifierProvider(
+final floatingPanelBlocProvider = ChangeNotifierProvider(
   (ref) {
-    return FloatingPanelBloc(isHidden: false);
+    return FloatingPanelBloc(false);
   },
 );
 
-class FloatingPanelBloc extends StateNotifier<bool> {
-  FloatingPanelBloc({
-    required bool isHidden,
-  }) : super(isHidden);
+class FloatingPanelBloc extends ChangeNotifier {
+  FloatingPanelBloc([bool? isHidden]) {
+    _isHidden = isHidden ?? false;
+  }
+
+  bool _isHidden = false;
+  bool get isHidden => _isHidden;
 
   void hide() {
-    state = true;
+    _isHidden = true;
+    notifyListeners();
   }
 
   void show() {
-    state = false;
+    _isHidden = false;
+    notifyListeners();
   }
 
   void toggle() {
-    state = !state;
+    _isHidden = !_isHidden;
+    notifyListeners();
   }
 }

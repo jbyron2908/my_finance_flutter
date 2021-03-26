@@ -9,56 +9,56 @@ import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_reposito
 import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
 
-final databaseProvider = Provider.autoDispose<DatabaseClient>((ref) {
+final databaseProvider = Provider<DatabaseClient>((ref) {
   var databaseClient = MemoryDatabaseClient();
   return databaseClient;
 });
 
 final profileRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return ProfileRepository(database);
   },
 );
 
 final accountRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return AccountRepository(database);
   },
 );
 
 final categoryRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return CategoryRepository(database);
   },
 );
 
 final payeeRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return PayeeRepository(database);
   },
 );
 
 final labelRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return LabelRepository(database);
   },
 );
 
 final operationRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return OperationRepository(database);
   },
 );
 
 final templateOperationRepositoryProvider = Provider(
   (ref) {
-    var database = ref.read(databaseProvider);
+    var database = ref.watch(databaseProvider);
     return TemplateOperationRepository(database);
   },
 );
