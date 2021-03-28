@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/circle_icon_button.dart';
 import 'package:my_finance_flutter_3/ui/widget/floating_panel/floating_panel.dart';
-import 'package:my_finance_flutter_3/ui/widget/floating_panel/floating_panel_bloc.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -37,12 +35,12 @@ class MainPage extends StatelessWidget {
           },
           child: Scaffold(
             body: child,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                var bloc = context.read(floatingPanelBlocProvider);
-                bloc.toggle();
-              },
-            ),
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {
+            //     var bloc = context.read(floatingPanelBlocProvider);
+            //     bloc.toggle();
+            //   },
+            // ),
             // bottomNavigationBar: buildBottomNavigationBar(tabsRouter),
           ),
         );

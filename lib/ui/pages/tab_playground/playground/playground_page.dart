@@ -17,6 +17,11 @@ class PlaygroundPage extends StatelessWidget {
             leading: FaIcon(Icons.add),
             onTap: () => context.router.push(CounterRoute()),
           ),
+          ListTile(
+            title: Text('Selectable List'),
+            leading: FaIcon(Icons.add),
+            onTap: () => context.router.push(SelectableListRoute()),
+          ),
         ],
       ),
     );

@@ -12,6 +12,8 @@ import '../pages/tab_debug/debug/debug_tools_page.dart' as _i4;
 import '../pages/tab_manager/main/management_page.dart' as _i5;
 import '../pages/tab_playground/counter/counter_page.dart' as _i7;
 import '../pages/tab_playground/playground/playground_page.dart' as _i6;
+import '../pages/tab_playground/selectable_list/selectable_list_page.dart'
+    as _i8;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -47,6 +49,10 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CounterRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: const _i7.CounterPage());
+    },
+    SelectableListRoute.name: (entry) {
+      return _i1.MaterialPageX(
+          entry: entry, child: const _i8.SelectableListPage());
     }
   };
 
@@ -67,7 +73,9 @@ class AppRouter extends _i1.RootStackRouter {
                   path: 'playground',
                   children: [
                     _i1.RouteConfig(PlaygroundRoute.name, path: ''),
-                    _i1.RouteConfig(CounterRoute.name, path: 'counter')
+                    _i1.RouteConfig(CounterRoute.name, path: 'counter'),
+                    _i1.RouteConfig(SelectableListRoute.name,
+                        path: 'selectable_list')
                   ])
             ])
       ];
@@ -129,4 +137,10 @@ class CounterRoute extends _i1.PageRouteInfo {
   const CounterRoute() : super(name, path: 'counter');
 
   static const String name = 'CounterRoute';
+}
+
+class SelectableListRoute extends _i1.PageRouteInfo {
+  const SelectableListRoute() : super(name, path: 'selectable_list');
+
+  static const String name = 'SelectableListRoute';
 }
