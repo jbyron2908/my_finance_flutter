@@ -9,7 +9,7 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import '../pages/main/main_page.dart' as _i3;
 import '../pages/splash/splash_page.dart' as _i2;
 import '../pages/tab_debug/debug/debug_tools_page.dart' as _i5;
-import '../pages/tab_manager/main/management_page.dart' as _i6;
+import '../pages/tab_manager/management/management_page.dart' as _i6;
 import '../pages/tab_manager/payee/form/payee_form_page.dart' as _i7;
 import '../pages/tab_playground/counter/counter_page.dart' as _i4;
 import '../pages/tab_playground/floating_panel/floating_panel_page.dart'
