@@ -20,11 +20,6 @@ class StatefulWrapper extends StatefulWidget {
 
 class _StatefulWrapperState extends State<StatefulWrapper> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     widget.onInit?.call();
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -37,6 +32,9 @@ class _StatefulWrapperState extends State<StatefulWrapper> {
   @override
   void dispose() {
     super.dispose();
-    widget.onDispose?.call();
+    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+      widget.onDispose?.call();
+    });
+    // routeObserver.unsubscribe(this);
   }
 }

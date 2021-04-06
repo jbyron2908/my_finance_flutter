@@ -22,6 +22,11 @@ class PlaygroundPage extends StatelessWidget {
             leading: FaIcon(Icons.add),
             onTap: () => context.router.push(SelectableListRoute()),
           ),
+          ListTile(
+            title: Text('Floating Panel'),
+            leading: FaIcon(Icons.add),
+            onTap: () => context.router.push(FloatingPanelRoute()),
+          ),
         ],
       ),
     );

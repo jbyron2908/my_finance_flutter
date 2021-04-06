@@ -17,9 +17,27 @@ class MyFinanceApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(),
+        routerDelegate: appRouter.delegate(navigatorObservers: [
+          LoggerRouteObserver(),
+        ]),
       ),
     );
+  }
+}
+
+class LoggerRouteObserver extends RouteObserver {
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    print('Pop route: ${route.settings.name}');
+    print('Pop to route: ${previousRoute?.settings.name}');
+  }
+
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    super.didPush(route, previousRoute);
+    print('Push route: ${route.settings.name}');
+    print('Push from route: ${previousRoute?.settings.name}');
   }
 }
 

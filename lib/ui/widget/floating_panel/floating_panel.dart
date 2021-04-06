@@ -69,10 +69,16 @@ class FloatingPanelAction extends StatelessWidget {
     return Consumer(
       builder: (context, watch, child) {
         var isHidden = watch(floatingPanelBlocProvider).isHidden;
-        return AnimatedOpacity(
-          opacity: isHidden ? 0 : 1,
-          duration: Duration(milliseconds: 300),
-          child: child,
+        return AnimatedPadding(
+          duration: Duration(milliseconds: 200),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: AnimatedOpacity(
+            opacity: isHidden ? 0 : 1,
+            duration: Duration(milliseconds: 300),
+            child: child,
+          ),
         );
       },
       child: child,

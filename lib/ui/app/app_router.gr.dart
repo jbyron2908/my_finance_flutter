@@ -8,11 +8,13 @@ import 'package:auto_route/auto_route.dart' as _i1;
 
 import '../pages/main/main_page.dart' as _i3;
 import '../pages/splash/splash_page.dart' as _i2;
-import '../pages/tab_debug/debug/debug_tools_page.dart' as _i4;
-import '../pages/tab_manager/main/management_page.dart' as _i5;
-import '../pages/tab_manager/payee/form/payee_form_page.dart' as _i6;
-import '../pages/tab_playground/counter/counter_page.dart' as _i8;
-import '../pages/tab_playground/playground/playground_page.dart' as _i7;
+import '../pages/tab_debug/debug/debug_tools_page.dart' as _i5;
+import '../pages/tab_manager/main/management_page.dart' as _i6;
+import '../pages/tab_manager/payee/form/payee_form_page.dart' as _i7;
+import '../pages/tab_playground/counter/counter_page.dart' as _i4;
+import '../pages/tab_playground/floating_panel/floating_panel_page.dart'
+    as _i10;
+import '../pages/tab_playground/playground/playground_page.dart' as _i8;
 import '../pages/tab_playground/selectable_list/selectable_list_page.dart'
     as _i9;
 
@@ -27,6 +29,9 @@ class AppRouter extends _i1.RootStackRouter {
     MainRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: _i3.MainPage());
     },
+    RootCounterRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: const _i4.CounterPage());
+    },
     DebugRouter.name: (entry) {
       return _i1.MaterialPageX(
           entry: entry, child: const _i1.EmptyRouterPage());
@@ -40,23 +45,27 @@ class AppRouter extends _i1.RootStackRouter {
           entry: entry, child: const _i1.EmptyRouterPage());
     },
     DebugToolsRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: _i4.DebugToolsPage());
+      return _i1.MaterialPageX(entry: entry, child: _i5.DebugToolsPage());
     },
     ManagementRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: _i5.ManagementPage());
+      return _i1.MaterialPageX(entry: entry, child: _i6.ManagementPage());
     },
     PayeeFormRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: _i6.PayeeFormPage());
+      return _i1.MaterialPageX(entry: entry, child: _i7.PayeeFormPage());
     },
     PlaygroundRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: _i7.PlaygroundPage());
+      return _i1.MaterialPageX(entry: entry, child: _i8.PlaygroundPage());
     },
     CounterRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: const _i8.CounterPage());
+      return _i1.MaterialPageX(entry: entry, child: const _i4.CounterPage());
     },
     SelectableListRoute.name: (entry) {
       return _i1.MaterialPageX(
           entry: entry, child: const _i9.SelectableListPage());
+    },
+    FloatingPanelRoute.name: (entry) {
+      return _i1.MaterialPageX(
+          entry: entry, child: const _i10.FloatingPanelPage());
     }
   };
 
@@ -80,9 +89,12 @@ class AppRouter extends _i1.RootStackRouter {
                     _i1.RouteConfig(PlaygroundRoute.name, path: ''),
                     _i1.RouteConfig(CounterRoute.name, path: 'counter'),
                     _i1.RouteConfig(SelectableListRoute.name,
-                        path: 'selectable_list')
+                        path: 'selectable_list'),
+                    _i1.RouteConfig(FloatingPanelRoute.name,
+                        path: 'floating_panel')
                   ])
-            ])
+            ]),
+        _i1.RouteConfig(RootCounterRoute.name, path: '/root_counter')
       ];
 }
 
@@ -97,6 +109,12 @@ class MainRoute extends _i1.PageRouteInfo {
       : super(name, path: '/main', initialChildren: children);
 
   static const String name = 'MainRoute';
+}
+
+class RootCounterRoute extends _i1.PageRouteInfo {
+  const RootCounterRoute() : super(name, path: '/root_counter');
+
+  static const String name = 'RootCounterRoute';
 }
 
 class DebugRouter extends _i1.PageRouteInfo {
@@ -154,4 +172,10 @@ class SelectableListRoute extends _i1.PageRouteInfo {
   const SelectableListRoute() : super(name, path: 'selectable_list');
 
   static const String name = 'SelectableListRoute';
+}
+
+class FloatingPanelRoute extends _i1.PageRouteInfo {
+  const FloatingPanelRoute() : super(name, path: 'floating_panel');
+
+  static const String name = 'FloatingPanelRoute';
 }
