@@ -14,7 +14,9 @@ class FloatingBottomBarBloc extends ChangeNotifier {
 
   bool _isHidden = false;
   bool get isHidden => _isHidden;
-  List<Widget> children = [];
+  List<Widget> rightChildren = [];
+  List<Widget> centerChildren = [];
+  List<Widget> leftChildren = [];
 
   void hide() {
     _isHidden = true;
@@ -31,18 +33,26 @@ class FloatingBottomBarBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addChild(Widget child) {
-    children.add(child);
+  void updateRightChildren(List<Widget> children) {
+    rightChildren.clear();
+    rightChildren.addAll(children);
     notifyListeners();
   }
 
-  void removeChild(Widget child) {
-    children.remove(child);
+  void updateLeftChildren(List<Widget> children) {
+    leftChildren.clear();
+    leftChildren.addAll(children);
+    notifyListeners();
+  }
+
+  void updateCenterChildren(List<Widget> children) {
+    centerChildren.clear();
+    centerChildren.addAll(children);
     notifyListeners();
   }
 
   void clearChildren() {
-    children.clear();
+    rightChildren.clear();
     notifyListeners();
   }
 }

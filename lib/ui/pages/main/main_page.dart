@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
+import 'package:my_finance_flutter_3/ui/app/navigation_provider.dart';
+import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/floating_bottom_bar/floating_bottom_bar.dart';
 
 class MainPage extends StatelessWidget {
@@ -9,6 +12,18 @@ class MainPage extends StatelessWidget {
     return AutoTabsRouter(
       routes: [PlaygroundRouter(), DebugRouter(), ManagerRouter()],
       builder: (context, child, animation) {
+        var provider = context.read(navigationProvider);
+        provider.registerTabsRouter(context.tabsRouter);
+        provider.registerRouter(context.tabsRouter.stackRouterOfIndex(0)!);
+        provider.registerRouter(context.tabsRouter.stackRouterOfIndex(1)!);
+        provider.registerRouter(context.tabsRouter.stackRouterOfIndex(2)!);
+        // context.tabsRouter.addListener(() {
+        //   var router = context.tabsRouter;
+        //   var currentRoute = router.current?.name;
+        //   var routeData = router.routeData?.name;
+        //   print('Router current - $currentRoute');
+        //   print('RouteData - $routeData');
+        // });
         // return FloatingPanel(
         //   centerAction: (_) {
         //     return GestureDetector(
@@ -32,38 +47,15 @@ class MainPage extends StatelessWidget {
         //       ),
         //     );
         //   },
-        return Scaffold(
-          body: FloatingBottomBar(
+        return FloatingPanel(
+          child: StatefulWrapper(
+            onRead: () {
+              FloatingPanel.of(context).updateLeftChildren([
+                MenuIcon(),
+              ]);
+            },
             child: child,
           ),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerFloat,
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          // var bloc = context.read(floatingPanelBlocProvider);
-          // bloc.addChild(
-          //   Container(
-          //     child: Material(
-          //       color: Colors.transparent,
-          //       child: InkWell(
-          //         onTap: () {
-          //           print('hello');
-          //         },
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: Icon(
-          //             Icons.menu,
-          //             color: Colors.white,
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // );
-          //   },
-          //   child: Icon(Icons.add),
-          // ),
-          // bottomNavigationBar: buildBottomNavigationBar(tabsRouter),
         );
       },
     );
@@ -106,5 +98,38 @@ class MainPage extends StatelessWidget {
         tabsRouter.setActiveIndex(index);
       },
     );
+  }
+}
+
+class MenuIcon extends StatelessWidget {
+  const MenuIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            incrementIndex(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Icon(
+              Icons.visibility,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void incrementIndex(BuildContext context) {
+    var tabsRouter = context.tabsRouter;
+    var routeNumber = tabsRouter.routeCollection.routes.length;
+    var activeIndex = tabsRouter.activeIndex;
+    activeIndex = (activeIndex + 1) % routeNumber;
+    tabsRouter.setActiveIndex(activeIndex);
   }
 }

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_finance_flutter_3/ui/app/navigation_provider.dart';
 
 import 'app_router.gr.dart';
 
@@ -10,17 +11,15 @@ class MyFinanceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      observers: [
-        LoggerProviderObserver(),
-      ],
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(navigatorObservers: [
-          LoggerRouteObserver(),
-        ]),
-      ),
+    var provider = context.read(navigationProvider);
+    provider.registerRouter(appRouter);
+
+    return MaterialApp.router(
+      title: 'Flutter Demo',
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(navigatorObservers: [
+        // LoggerRouteObserver(),
+      ]),
     );
   }
 }
@@ -53,10 +52,10 @@ class LoggerProviderObserver extends ProviderObserver {
 
   @override
   void didUpdateProvider(ProviderBase provider, Object? newValue) {
-    log(divisor);
-    log('${_getProviderName(provider)} - updated');
-    log('${_getProviderName(provider)} - value = ${newValue.toString()}');
-    log(divisor);
+    // log(divisor);
+    // log('${_getProviderName(provider)} - updated');
+    // log('${_getProviderName(provider)} - value = ${newValue.toString()}');
+    // log(divisor);
   }
 
   @override

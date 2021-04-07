@@ -35,11 +35,12 @@ class FloatingPanelPage extends StatelessWidget with RouteAware {
     return FocusDetector(
       onFocusGained: () {
         print('onFocusGained');
-        bloc.addChild(widget);
+
+        // bloc.addChild(widget);
       },
       onFocusLost: () {
         print('onFocusLost');
-        bloc.removeChild(widget);
+        // bloc.removeChild(widget);
       },
       onVisibilityGained: () {
         print('onVisibilityGained');
@@ -59,24 +60,26 @@ class FloatingPanelPage extends StatelessWidget with RouteAware {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  bloc.addChild(
-                    Container(
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                            print('hello');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Icon(
-                              Icons.menu,
-                              color: Colors.white,
+                  bloc.updateLeftChildren(
+                    [
+                      Container(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              print('hello');
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Icon(
+                                Icons.menu,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   );
                 },
                 child: Text('Add item'),
