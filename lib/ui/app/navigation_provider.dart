@@ -36,7 +36,8 @@ class NavigationProvider {
 
   void onChangeRouter(StackRouter router) {
     print(divisor);
-    var currentRoute = router.current?.name;
+    var topMost = router.topMost;
+    var currentRoute = topMost.current?.name;
     var routeData = router.routeData?.name;
     print('onChangeRouter - ${router.key.value}');
     print('Router current - $currentRoute');
@@ -68,9 +69,10 @@ class NavigationProvider {
 
   void onChangeTabsRouter(TabsRouter router) {
     print(divisor);
-    var currentRoute = router.current?.name;
+    var topMost = router.topMost;
+    var currentRoute = topMost.current?.name;
     var routeData = router.routeData?.name;
-    print('onChangeRouter - ${router.key.value}');
+    print('onChangeTabsRouter - ${router.key.value}');
     print('Router current - $currentRoute');
     print('RouteData - $routeData');
     print(divisor);

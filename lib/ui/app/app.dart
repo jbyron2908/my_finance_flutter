@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_finance_flutter_3/ui/app/navigation_provider.dart';
 
 import 'app_router.gr.dart';
 
@@ -11,9 +10,6 @@ class MyFinanceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = context.read(navigationProvider);
-    provider.registerRouter(appRouter);
-
     return MaterialApp.router(
       title: 'Flutter Demo',
       routeInformationParser: appRouter.defaultRouteParser(),

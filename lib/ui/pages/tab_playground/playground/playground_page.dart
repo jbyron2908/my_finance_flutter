@@ -60,8 +60,9 @@ class PlaygroundPage extends StatelessWidget {
               onTap: () => context.tabsRouter.setActiveIndex(2),
             ),
             ListTile(
-              title: Text('Floating Panel'),
+              title: Text('Root counter page'),
               leading: FaIcon(Icons.add),
+              onTap: () => context.router.root.push(RootCounterRoute()),
             ),
             ListTile(
               title: Text('Floating Panel'),
