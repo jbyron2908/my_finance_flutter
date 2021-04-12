@@ -65,8 +65,9 @@ class PlaygroundPage extends StatelessWidget {
               onTap: () => context.router.root.push(RootCounterRoute()),
             ),
             ListTile(
-              title: Text('Floating Panel'),
+              title: Text('Change notifier'),
               leading: FaIcon(Icons.add),
+              onTap: () => context.router.push(ChangeNotifierRoute()),
             ),
             ListTile(
               title: Text('Floating Panel'),

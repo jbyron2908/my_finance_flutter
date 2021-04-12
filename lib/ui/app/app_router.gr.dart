@@ -11,6 +11,8 @@ import '../pages/splash/splash_page.dart' as _i2;
 import '../pages/tab_debug/debug/debug_tools_page.dart' as _i5;
 import '../pages/tab_manager/management/management_page.dart' as _i6;
 import '../pages/tab_manager/payee/form/payee_form_page.dart' as _i7;
+import '../pages/tab_playground/change_notifier/change_notifier_page.dart'
+    as _i11;
 import '../pages/tab_playground/counter/counter_page.dart' as _i4;
 import '../pages/tab_playground/floating_panel/floating_panel_page.dart'
     as _i10;
@@ -66,6 +68,10 @@ class AppRouter extends _i1.RootStackRouter {
     FloatingPanelRoute.name: (entry) {
       return _i1.MaterialPageX(
           entry: entry, child: const _i10.FloatingPanelPage());
+    },
+    ChangeNotifierRoute.name: (entry) {
+      return _i1.MaterialPageX(
+          entry: entry, child: const _i11.ChangeNotifierPage());
     }
   };
 
@@ -91,7 +97,9 @@ class AppRouter extends _i1.RootStackRouter {
                     _i1.RouteConfig(SelectableListRoute.name,
                         path: 'selectable_list'),
                     _i1.RouteConfig(FloatingPanelRoute.name,
-                        path: 'floating_panel')
+                        path: 'floating_panel'),
+                    _i1.RouteConfig(ChangeNotifierRoute.name,
+                        path: 'change_notifier')
                   ])
             ]),
         _i1.RouteConfig(RootCounterRoute.name, path: '/root_counter')
@@ -178,4 +186,10 @@ class FloatingPanelRoute extends _i1.PageRouteInfo {
   const FloatingPanelRoute() : super(name, path: 'floating_panel');
 
   static const String name = 'FloatingPanelRoute';
+}
+
+class ChangeNotifierRoute extends _i1.PageRouteInfo {
+  const ChangeNotifierRoute() : super(name, path: 'change_notifier');
+
+  static const String name = 'ChangeNotifierRoute';
 }

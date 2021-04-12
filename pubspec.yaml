@@ -13,21 +13,24 @@ dependencies:
     sdk: flutter
   auto_route: ^1.0.2
   dartx: ^0.7.0
+  flutter_riverpod: ^0.14.0+1
+  focus_detector: ^2.0.0
   font_awesome_flutter: ^9.0.0
   form_field_validator: ^1.1.0
   freezed_annotation: ^0.14.0
   logger: ^1.0.0
-  riverpod: ^0.13.1
-  flutter_riverpod: ^0.13.1+1
-  rxdart: ^0.26.0
   modal_bottom_sheet: ^2.0.0
-  focus_detector: ^2.0.0
+  provider: ^5.0.0
+  riverpod: ^0.14.0+1
+  rxdart: ^0.26.0
+  state_notifier: ^0.7.0
+  flutter_state_notifier: ^0.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^1.0.2
-  freezed: ^0.14.0+1
+  freezed: ^0.14.1+2
   json_serializable: ^4.0.2
   pedantic: ^1.11.0
 

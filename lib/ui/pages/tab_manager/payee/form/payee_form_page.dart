@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
+import 'package:provider/provider.dart';
 
-final nameProvider = StateProvider.autoDispose((_) => '');
+class PayeeFormBloc with ChangeNotifier {
+  String name = '';
 
-final payeeFormProvider = Provider.autoDispose(
-  (ref) {
-    return PayeeFormBloc(ref.read);
-  },
-);
-
-class PayeeFormBloc {
-  PayeeFormBloc(this.reader);
-
-  final Reader reader;
   final formKey = GlobalKey<FormState>();
 
   void submit(BuildContext context) async {
@@ -20,7 +12,6 @@ class PayeeFormBloc {
 
     if (formKey.currentState?.validate() ?? false) {
       formKey.currentState?.save();
-      var name = reader(nameProvider).state;
       print(name);
     }
   }
@@ -29,69 +20,68 @@ class PayeeFormBloc {
 class PayeeFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var bloc = context.read(payeeFormProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Payee form'),
-      ),
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onPanDown: (_) {
-          // Hide keyboard when scroll
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Form(
-          key: bloc.formKey,
-          child: ListView(
-            padding: const EdgeInsets.all(8.0),
-            children: <Widget>[
-              ...buildFormFields(),
-            ],
+    return ChangeNotifierProvider(
+      create: (context) => PayeeFormBloc(),
+      child: Builder(builder: (context) {
+        var bloc = context.read<PayeeFormBloc>();
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Payee form'),
           ),
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onPanDown: (_) {
+              // Hide keyboard when scroll
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Form(
+              key: bloc.formKey,
+              child: ListView(
+                padding: const EdgeInsets.all(8.0),
+                children: <Widget>[
+                  ...buildFormFields(context),
+                  ElevatedButton(
+                    onPressed: () => bloc.submit(context),
+                    child: Text('Sumbit'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+  List<Widget> buildFormFields(BuildContext context) {
+    return <Widget>[
+      TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Name',
+          border: OutlineInputBorder(),
+        ),
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+        onSaved: (value) {
+          context.read<PayeeFormBloc>().name = value ?? '';
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      InputDecorator(
+        decoration: InputDecoration(
+          labelText: 'Name2',
+          border: OutlineInputBorder(),
+        ),
+        child: Text(
+          'Hello',
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ),
-    );
-  }
-
-  List<Widget> buildFormFields() {
-    return <Widget>[
-      TextField(
-        stateProvider: nameProvider,
-        labelText: 'Name:',
-      ),
     ];
-  }
-}
-
-class TextField extends StatelessWidget {
-  const TextField({
-    Key? key,
-    required this.stateProvider,
-    this.labelText = '',
-  }) : super(key: key);
-
-  final AutoDisposeStateProvider<String> stateProvider;
-  final String labelText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, watch, child) {
-        var field = watch(stateProvider);
-        return TextFormField(
-          decoration: InputDecoration(
-            labelText: labelText,
-            border: OutlineInputBorder(),
-          ),
-          initialValue: 'Default',
-          validator: (value) {
-            if (value == 'Default') {
-              return 'Change it';
-            }
-          },
-          onSaved: (value) => field.state = value ?? '',
-        );
-      },
-    );
   }
 }
