@@ -9,16 +9,9 @@ import 'package:provider/provider.dart';
 class PlaygroundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // context.router.addListener(() {
-    //   var router = context.router;
-    //   var currentRoute = router.current?.name;
-    //   var routeData = router.routeData?.name;
-    //   print('Router current - $currentRoute');
-    //   print('RouteData - $routeData');
-    // });
-
     return ToolbarPanelScrollObserver(
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
           ListTile(
             title: Text('Counter'),

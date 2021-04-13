@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
 import 'package:provider/provider.dart';
 
 class PayeeFormBloc with ChangeNotifier {
@@ -33,72 +31,7 @@ class PayeeFormPage extends StatelessWidget {
           return ToolbarPanelScrollObserver(
             child: StatefulWrapper(
               onRead: (context) {
-                var myPanel = context.read<ToolbarPanelBloc>();
-
-                myPanel.updateBottomLeftChildren([
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                ]);
-
-                myPanel.updateBottomCenterChildren([
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Icon(Icons.menu),
-                    ),
-                  ),
-                ]);
-
-                myPanel.updateBottomRightChildren([
-                  Container(
-                    width: 32,
-                    child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: FaIcon(Icons.menu),
-                    ),
-                  ),
-                ]);
+                // TODO: Modify toolbar
               },
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,

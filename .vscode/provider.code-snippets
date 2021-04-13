@@ -60,7 +60,7 @@
 	"Provider read var": {
 		"prefix": "provider_read_var",
 		"body": [
-			"var ${1:example} = context.read();"
+			"var example = context.read<${1:class}>();"
 		],
 		"description": "Provider read var"
 	},
@@ -74,7 +74,7 @@
 	"Provider watch var": {
 		"prefix": "provider_watch_var",
 		"body": [
-			"var ${1:example} = context.watch();"
+			"var example = context.watch<${1:class}>();"
 		],
 		"description": "Provider watch var"
 	}

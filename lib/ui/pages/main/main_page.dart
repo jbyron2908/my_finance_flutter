@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -12,9 +16,68 @@ class MainPage extends StatelessWidget {
       builder: (context, child, animation) {
         return ToolbarPanel(
           child: StatefulWrapper(
-            onRead: (context) {},
-            child: child,
+            onRead: (context) {
+              var toolbar = context.read<ToolbarPanelBloc>();
+              toolbar.updateBottomCenterChildren([
+                ToolbarButton(
+                  onPressed: () {
+                    showTabsModal(context);
+                  },
+                  child: Icon(Icons.menu),
+                ),
+              ]);
+            },
+            child: WillPopScope(
+              onWillPop: () async {
+                var router = context.router;
+                if (router.stack.length > 1) {
+                  await router.pop();
+                } else {
+                  var tabsRouter = context.tabsRouter;
+                  if (tabsRouter.activeIndex != 0) {
+                    tabsRouter.setActiveIndex(0);
+                  }
+                }
+                return false;
+              },
+              child: child,
+            ),
           ),
+        );
+      },
+    );
+  }
+
+  void showTabsModal(BuildContext parent) {
+    showMaterialModalBottomSheet(
+      context: parent,
+      builder: (context) {
+        return ListView(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          children: [
+            ListTile(
+              title: Text('Playground'),
+              onTap: () {
+                parent.tabsRouter.setActiveIndex(0);
+                context.router.pop();
+              },
+            ),
+            ListTile(
+              title: Text('Debug'),
+              onTap: () {
+                parent.tabsRouter.setActiveIndex(1);
+                context.router.pop();
+              },
+            ),
+            ListTile(
+              title: Text('Management'),
+              onTap: () {
+                parent.tabsRouter.setActiveIndex(2);
+                context.router.pop();
+              },
+            ),
+          ],
         );
       },
     );
@@ -57,38 +120,5 @@ class MainPage extends StatelessWidget {
         tabsRouter.setActiveIndex(index);
       },
     );
-  }
-}
-
-class MenuIcon extends StatelessWidget {
-  const MenuIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () {
-            incrementIndex(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Icon(
-              Icons.visibility,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void incrementIndex(BuildContext context) {
-    var tabsRouter = context.tabsRouter;
-    var routeNumber = tabsRouter.routeCollection.routes.length;
-    var activeIndex = tabsRouter.activeIndex;
-    activeIndex = (activeIndex + 1) % routeNumber;
-    tabsRouter.setActiveIndex(activeIndex);
   }
 }
