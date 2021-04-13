@@ -18,6 +18,9 @@ class UIHelper {
   static const verticalSpaceLarge = SizedBox(
     height: _spaceLarge,
   );
+  static const verticalDivider = VerticalDivider(
+    color: Colors.white,
+  );
 
   static const horizontalSpaceTiny = SizedBox(
     width: _spaceTiny,

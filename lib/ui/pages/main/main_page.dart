@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/app/navigation_provider.dart';
-import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
-import 'package:my_finance_flutter_3/ui/widget/floating_bottom_bar/floating_bottom_bar.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: [PlaygroundRouter(), DebugRouter(), ManagerRouter()],
+      routes: [ManagerRouter(), PlaygroundRouter(), DebugRouter()],
       builder: (context, child, animation) {
         var provider = context.read(navigationProvider);
         provider.registerTabsRouter(context.tabsRouter);
@@ -47,15 +46,8 @@ class MainPage extends StatelessWidget {
         //       ),
         //     );
         //   },
-        return FloatingPanel(
-          child: StatefulWrapper(
-            onRead: () {
-              FloatingPanel.of(context).updateLeftChildren([
-                MenuIcon(),
-              ]);
-            },
-            child: child,
-          ),
+        return ToolbarPanel(
+          child: child,
         );
       },
     );

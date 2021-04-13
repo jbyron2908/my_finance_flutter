@@ -12,10 +12,8 @@ import '../pages/tab_debug/debug/debug_tools_page.dart' as _i5;
 import '../pages/tab_manager/management/management_page.dart' as _i6;
 import '../pages/tab_manager/payee/form/payee_form_page.dart' as _i7;
 import '../pages/tab_playground/change_notifier/change_notifier_page.dart'
-    as _i11;
-import '../pages/tab_playground/counter/counter_page.dart' as _i4;
-import '../pages/tab_playground/floating_panel/floating_panel_page.dart'
     as _i10;
+import '../pages/tab_playground/counter/counter_page.dart' as _i4;
 import '../pages/tab_playground/playground/playground_page.dart' as _i8;
 import '../pages/tab_playground/selectable_list/selectable_list_page.dart'
     as _i9;
@@ -65,13 +63,9 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(
           entry: entry, child: const _i9.SelectableListPage());
     },
-    FloatingPanelRoute.name: (entry) {
-      return _i1.MaterialPageX(
-          entry: entry, child: const _i10.FloatingPanelPage());
-    },
     ChangeNotifierRoute.name: (entry) {
       return _i1.MaterialPageX(
-          entry: entry, child: const _i11.ChangeNotifierPage());
+          entry: entry, child: const _i10.ChangeNotifierPage());
     }
   };
 
@@ -96,8 +90,6 @@ class AppRouter extends _i1.RootStackRouter {
                     _i1.RouteConfig(CounterRoute.name, path: 'counter'),
                     _i1.RouteConfig(SelectableListRoute.name,
                         path: 'selectable_list'),
-                    _i1.RouteConfig(FloatingPanelRoute.name,
-                        path: 'floating_panel'),
                     _i1.RouteConfig(ChangeNotifierRoute.name,
                         path: 'change_notifier')
                   ])
@@ -180,12 +172,6 @@ class SelectableListRoute extends _i1.PageRouteInfo {
   const SelectableListRoute() : super(name, path: 'selectable_list');
 
   static const String name = 'SelectableListRoute';
-}
-
-class FloatingPanelRoute extends _i1.PageRouteInfo {
-  const FloatingPanelRoute() : super(name, path: 'floating_panel');
-
-  static const String name = 'FloatingPanelRoute';
 }
 
 class ChangeNotifierRoute extends _i1.PageRouteInfo {
