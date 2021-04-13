@@ -84,9 +84,8 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.watch<ToolbarPanelBloc>();
-    var context2 = Scaffold.of(context).context;
-    var bottom = MediaQuery.of(context2).viewInsets.bottom;
-    print('bottom - $bottom');
+    var scaffoldContext = Scaffold.of(context).context;
+    var bottom = MediaQuery.of(scaffoldContext).viewInsets.bottom;
     var isHidden = bloc.isHidden && bottom == 0;
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
@@ -126,40 +125,5 @@ class BottomBar extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class ToolbarPanelScrollObserver extends StatelessWidget {
-  const ToolbarPanelScrollObserver({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (scrollNotification) {
-        if (scrollNotification is ScrollUpdateNotification) {
-          onScrollVertical(context, scrollNotification);
-        }
-        return false;
-      },
-      child: child,
-    );
-  }
-
-  void onScrollVertical(
-    BuildContext context,
-    ScrollUpdateNotification scrollNotification,
-  ) {
-    var bloc = context.read<ToolbarPanelBloc>();
-    var dy = scrollNotification.dragDetails?.delta.dy ?? 0;
-    if (dy > 0 && bloc.isHidden) {
-      bloc.show();
-    } else if (dy < 0 && !bloc.isHidden) {
-      bloc.hide();
-    }
   }
 }

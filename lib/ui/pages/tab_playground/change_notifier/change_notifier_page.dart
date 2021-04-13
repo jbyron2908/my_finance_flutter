@@ -10,18 +10,13 @@ class ChangeNotifierPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Change notifier'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CounterWidget(),
-            CounterWidget(),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CounterWidget(),
+          CounterWidget(),
+        ],
       ),
     );
   }

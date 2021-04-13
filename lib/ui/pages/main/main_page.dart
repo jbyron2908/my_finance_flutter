@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
-import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
+import 'package:my_finance_flutter_3/ui/widget/basic/lifecycle_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
       routes: [PlaygroundRouter(), DebugRouter(), ManagerRouter()],
       builder: (context, child, animation) {
         return ToolbarPanel(
-          child: StatefulWrapper(
+          child: LifecycleWidget(
             onRead: (context) {
               var toolbar = context.read<ToolbarPanelBloc>();
               toolbar.updateBottomCenterChildren([
@@ -29,15 +29,17 @@ class MainPage extends StatelessWidget {
             },
             child: WillPopScope(
               onWillPop: () async {
-                var router = context.router;
-                if (router.stack.length > 1) {
-                  await router.pop();
+                var current = context.tabsRouter.topMost;
+
+                if (current.stack.length > 1) {
+                  await current.pop();
                 } else {
                   var tabsRouter = context.tabsRouter;
                   if (tabsRouter.activeIndex != 0) {
                     tabsRouter.setActiveIndex(0);
                   }
                 }
+
                 return false;
               },
               child: child,

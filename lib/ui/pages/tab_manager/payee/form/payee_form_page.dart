@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/widget/basic/callback_widget.dart';
+import 'package:my_finance_flutter_3/ui/widget/basic/lifecycle_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_scroll_observer.dart';
 import 'package:provider/provider.dart';
 
 class PayeeFormBloc with ChangeNotifier {
@@ -28,10 +30,22 @@ class PayeeFormPage extends StatelessWidget {
         builder: (context) {
           var bloc = context.read<PayeeFormBloc>();
 
-          return ToolbarPanelScrollObserver(
-            child: StatefulWrapper(
+          return ToolbarScrollObserver(
+            child: LifecycleWidget(
               onRead: (context) {
                 // TODO: Modify toolbar
+              },
+              onTopStack: (context) {
+                var bloc = context.read<ToolbarPanelBloc>();
+                bloc.updateBottomRightChildren([
+                  ToolbarButton(
+                    child: Icon(Icons.add),
+                  ),
+                ]);
+              },
+              onBackStack: (context) {
+                var bloc = context.read<ToolbarPanelBloc>();
+                bloc.updateBottomRightChildren([]);
               },
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,

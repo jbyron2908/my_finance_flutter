@@ -11,18 +11,17 @@ class SelectableListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SelectableList(),
-      builder: (context, _) => Scaffold(
-        appBar: AppBar(
-          title: Text('Selectable List'),
-        ),
-        body: ListWidget(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('Add item');
-            context.read<SelectableList>().add();
-          },
-          child: Icon(Icons.add),
-        ),
+      builder: (context, _) => Column(
+        children: [
+          ListWidget(),
+          ElevatedButton(
+            onPressed: () {
+              print('Add item');
+              context.read<SelectableList>().add();
+            },
+            child: Icon(Icons.add),
+          )
+        ],
       ),
     );
   }
@@ -39,6 +38,7 @@ class ListWidget extends StatelessWidget {
       (value) => value.list,
     );
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: list.length,
       itemBuilder: (context, index) {
         return ChangeNotifierProvider(

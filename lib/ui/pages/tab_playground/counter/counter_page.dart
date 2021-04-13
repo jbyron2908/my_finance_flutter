@@ -19,28 +19,23 @@ class CounterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => Counter(),
-      builder: (context, _) => Scaffold(
-        appBar: AppBar(
-          title: Text('Counter'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Builder(
-                builder: (context) {
-                  var count = context.watch<Counter>().count;
-                  return Text('Counter: $count');
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<Counter>().increase();
-                },
-                child: Text('Increase'),
-              ),
-            ],
-          ),
+      builder: (context, _) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Builder(
+              builder: (context) {
+                var count = context.watch<Counter>().count;
+                return Text('Counter: $count');
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.read<Counter>().increase();
+              },
+              child: Text('Increase'),
+            ),
+          ],
         ),
       ),
     );

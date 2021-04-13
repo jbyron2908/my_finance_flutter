@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_scroll_observer.dart';
 import 'package:provider/provider.dart';
 
 class PlaygroundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ToolbarPanelScrollObserver(
+    return ToolbarScrollObserver(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [

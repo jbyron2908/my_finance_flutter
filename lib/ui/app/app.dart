@@ -14,6 +14,7 @@ class MyFinanceApp extends StatelessWidget {
         routeInformationParser: appRouter.defaultRouteParser(),
         routerDelegate: appRouter.delegate(
           navigatorObservers: [
+            routeObserver,
             // LoggerRouteObserver(),
           ],
         ),
@@ -21,6 +22,8 @@ class MyFinanceApp extends StatelessWidget {
     );
   }
 }
+
+final RouteObserver<Route> routeObserver = RouteObserver<Route>();
 
 class LoggerRouteObserver extends RouteObserver {
   @override
