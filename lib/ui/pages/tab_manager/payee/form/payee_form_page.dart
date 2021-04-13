@@ -32,7 +32,7 @@ class PayeeFormPage extends StatelessWidget {
 
           return ToolbarPanelScrollObserver(
             child: StatefulWrapper(
-              onRead: () {
+              onRead: (context) {
                 var myPanel = context.read<ToolbarPanelBloc>();
 
                 myPanel.updateBottomLeftChildren([

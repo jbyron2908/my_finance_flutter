@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final listProvider = ChangeNotifierProvider.autoDispose(
-  (ref) {
-    return SelectableList();
-  },
-);
-
-final itemProvider = ChangeNotifierProvider.autoDispose.family<ListItem, int>(
-  (ref, index) {
-    var list = ref.read(listProvider).list;
-    return list[index];
-  },
-);
 
 class SelectableList extends ChangeNotifier {
-  final list = <ListItem>[];
+  var list = List<ListItem>.unmodifiable([]);
   var _count = 0;
 
   void add() {
     var listItem = ListItem(_count);
-    list.add(listItem);
+    list = [
+      ...list,
+      listItem,
+    ];
     _count++;
     notifyListeners();
   }

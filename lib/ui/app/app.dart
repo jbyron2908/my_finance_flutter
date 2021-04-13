@@ -1,7 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_finance_flutter_3/ui/app/app_controller.dart';
 
 import 'app_router.gr.dart';
 
@@ -10,12 +8,16 @@ class MyFinanceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Demo',
-      routeInformationParser: appRouter.defaultRouteParser(),
-      routerDelegate: appRouter.delegate(navigatorObservers: [
-        // LoggerRouteObserver(),
-      ]),
+    return AppController(
+      child: MaterialApp.router(
+        title: 'Flutter Demo',
+        routeInformationParser: appRouter.defaultRouteParser(),
+        routerDelegate: appRouter.delegate(
+          navigatorObservers: [
+            // LoggerRouteObserver(),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -33,37 +35,5 @@ class LoggerRouteObserver extends RouteObserver {
     super.didPush(route, previousRoute);
     print('Push route: ${route.settings.name}');
     print('Push from route: ${previousRoute?.settings.name}');
-  }
-}
-
-class LoggerProviderObserver extends ProviderObserver {
-  final String divisor = '------------------------';
-  @override
-  void didAddProvider(ProviderBase provider, Object? value) {
-    log(divisor);
-    log('${_getProviderName(provider)} - created');
-    log('${_getProviderName(provider)} - value = ${value.toString()}');
-    log(divisor);
-  }
-
-  @override
-  void didUpdateProvider(ProviderBase provider, Object? newValue) {
-    // log(divisor);
-    // log('${_getProviderName(provider)} - updated');
-    // log('${_getProviderName(provider)} - value = ${newValue.toString()}');
-    // log(divisor);
-  }
-
-  @override
-  void didDisposeProvider(ProviderBase provider) {
-    log(divisor);
-    log('${_getProviderName(provider)} - dispose');
-    log(divisor);
-  }
-
-  String _getProviderName(ProviderBase provider) {
-    var type = provider.runtimeType.toString();
-    var name = provider.name;
-    return '$type:$name';
   }
 }

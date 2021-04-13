@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:provider/provider.dart';
 
-final counterProvider = StateProvider.autoDispose((ref) => 0);
+class Counter with ChangeNotifier {
+  int count = 0;
+
+  void increase() {
+    count++;
+    notifyListeners();
+  }
+}
 
 class CounterPage extends StatelessWidget {
   const CounterPage({
@@ -11,26 +17,30 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Consumer(
-              builder: (context, watch, child) {
-                var count = watch(counterProvider).state;
-                return Text('Counter: $count');
-              },
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  context.read(counterProvider).state++;
+    return ChangeNotifierProvider(
+      create: (context) => Counter(),
+      builder: (context, _) => Scaffold(
+        appBar: AppBar(
+          title: Text('Counter'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Builder(
+                builder: (context) {
+                  var count = context.watch<Counter>().count;
+                  return Text('Counter: $count');
                 },
-                child: Text('Increase')),
-          ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<Counter>().increase();
+                },
+                child: Text('Increase'),
+              ),
+            ],
+          ),
         ),
       ),
     );

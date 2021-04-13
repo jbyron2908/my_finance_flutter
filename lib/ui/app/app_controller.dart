@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
 import 'package:my_finance_flutter_3/core/data_source/database/memory/database_client.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/account/account_repository.dart';
@@ -8,57 +8,48 @@ import 'package:my_finance_flutter_3/core/domain/repository/operation/operation_
 import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
+import 'package:provider/provider.dart';
 
-final databaseProvider = Provider<DatabaseClient>((ref) {
-  var databaseClient = MemoryDatabaseClient();
-  return databaseClient;
-});
+class AppController extends StatelessWidget {
+  const AppController({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
-final profileRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return ProfileRepository(database);
-  },
-);
+  final Widget child;
 
-final accountRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return AccountRepository(database);
-  },
-);
-
-final categoryRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return CategoryRepository(database);
-  },
-);
-
-final payeeRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return PayeeRepository(database);
-  },
-);
-
-final labelRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return LabelRepository(database);
-  },
-);
-
-final operationRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return OperationRepository(database);
-  },
-);
-
-final templateOperationRepositoryProvider = Provider(
-  (ref) {
-    var database = ref.watch(databaseProvider);
-    return TemplateOperationRepository(database);
-  },
-);
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<DatabaseClient>(
+          create: (context) => MemoryDatabaseClient(),
+        ),
+        Provider(
+          create: (context) => ProfileRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => AccountRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => CategoryRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => PayeeRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => LabelRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => TemplateOperationRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => OperationRepository(context.read()),
+        ),
+      ],
+      builder: (context, _) {
+        return child;
+      },
+    );
+  }
+}

@@ -9,9 +9,9 @@ class StatefulWrapper extends StatefulWidget {
     required this.child,
   });
 
-  final void Function()? onInit;
-  final void Function()? onRead;
-  final void Function()? onDispose;
+  final void Function(BuildContext context)? onInit;
+  final void Function(BuildContext context)? onRead;
+  final void Function(BuildContext context)? onDispose;
   final Widget child;
 
   @override
@@ -21,9 +21,9 @@ class StatefulWrapper extends StatefulWidget {
 class _StatefulWrapperState extends State<StatefulWrapper> {
   @override
   Widget build(BuildContext context) {
-    widget.onInit?.call();
+    widget.onInit?.call(context);
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onRead?.call();
+      widget.onRead?.call(context);
     });
 
     return widget.child;
@@ -31,10 +31,9 @@ class _StatefulWrapperState extends State<StatefulWrapper> {
 
   @override
   void dispose() {
-    super.dispose();
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onDispose?.call();
+      widget.onDispose?.call(context);
     });
-    // routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }
