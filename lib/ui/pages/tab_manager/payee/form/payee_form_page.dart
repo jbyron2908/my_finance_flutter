@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter_3/ui/widget/basic/form/picker_field.dart';
+import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/lifecycle_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_scroll_observer.dart';
 import 'package:provider/provider.dart';
 
-class PayeeFormBloc with ChangeNotifier {
+class PayeeFormBloc {
   String name = '';
+  String picker = '';
 
   final formKey = GlobalKey<FormState>();
 
@@ -17,6 +19,7 @@ class PayeeFormBloc with ChangeNotifier {
     if (formKey.currentState?.validate() ?? false) {
       formKey.currentState?.save();
       print(name);
+      print(picker);
     }
   }
 }
@@ -24,63 +27,55 @@ class PayeeFormBloc with ChangeNotifier {
 class PayeeFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return Provider(
       create: (context) => PayeeFormBloc(),
-      child: Builder(
-        builder: (context) {
-          var bloc = context.read<PayeeFormBloc>();
+      builder: (context, _) {
+        var bloc = context.read<PayeeFormBloc>();
 
-          return ToolbarScrollObserver(
-            child: LifecycleWidget(
-              onRead: (context) {
-                // TODO: Modify toolbar
-              },
-              onTopStack: (context) {
-                var bloc = context.read<ToolbarPanelBloc>();
-                bloc.updateBottomRightChildren([
-                  ToolbarButton(
-                    child: Icon(Icons.add),
-                  ),
-                ]);
-              },
-              onBackStack: (context) {
-                var bloc = context.read<ToolbarPanelBloc>();
-                bloc.updateBottomRightChildren([]);
-              },
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onPanDown: (_) {
-                  // Hide keyboard when scroll
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Form(
-                  key: bloc.formKey,
-                  child: ListView(
-                    padding: const EdgeInsets.all(8.0),
-                    children: <Widget>[
-                      ...buildFormFields(context),
-                      ElevatedButton(
-                        onPressed: () => bloc.submit(context),
-                        child: Text('Sumbit'),
-                      ),
-                    ],
-                  ),
+        return LifecycleWidget(
+          onTopStack: (context) {
+            var bloc = context.read<ToolbarPanelBloc>();
+            bloc.updateBottomRightChildren([
+              ToolbarButton(
+                child: Icon(Icons.add),
+              ),
+            ]);
+          },
+          onBackStack: (context) {
+            var bloc = context.read<ToolbarPanelBloc>();
+            bloc.updateBottomRightChildren([]);
+          },
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onPanDown: (_) {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: Form(
+              key: bloc.formKey,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    ...buildFormFields(context),
+                    ElevatedButton(
+                      onPressed: () => bloc.submit(context),
+                      child: Text('Sumbit'),
+                    ),
+                  ],
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
   List<Widget> buildFormFields(BuildContext context) {
     return <Widget>[
-      TextFormField(
-        decoration: InputDecoration(
-          labelText: 'Name',
-          border: OutlineInputBorder(),
-        ),
+      AppTextField(
+        key: Key('1'),
+        label: 'Name',
         initialValue: 'Default',
         validator: (value) {
           if (value == 'Default') {
@@ -92,15 +87,19 @@ class PayeeFormPage extends StatelessWidget {
         },
       ),
       UIHelper.verticalSpaceSmall,
-      InputDecorator(
-        decoration: InputDecoration(
-          labelText: 'Name2',
-          border: OutlineInputBorder(),
-        ),
-        child: Text(
-          'Hello',
-          style: Theme.of(context).textTheme.subtitle1,
-        ),
+      PickerField<String>(
+        initialValue: 'KKKKK',
+        buildTitle: (value) => 'AAA: $value',
+        label: 'My expirement',
+        onTap: () async {
+          return 'BBB';
+        },
+        validator: (value) {
+          // return 'Change itaaaa';
+        },
+        onSaved: (value) {
+          context.read<PayeeFormBloc>().picker = value ?? '';
+        },
       ),
       UIHelper.verticalSpaceSmall,
       InputDecorator(
@@ -169,11 +168,8 @@ class PayeeFormPage extends StatelessWidget {
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        decoration: InputDecoration(
-          labelText: 'Name',
-          border: OutlineInputBorder(),
-        ),
+      AppTextField(
+        label: 'Name',
         initialValue: 'Default',
         validator: (value) {
           if (value == 'Default') {
@@ -181,7 +177,7 @@ class PayeeFormPage extends StatelessWidget {
           }
         },
         onSaved: (value) {
-          context.read<PayeeFormBloc>().name = value ?? '';
+          // context.read<PayeeFormBloc>().name = value ?? '';
         },
       ),
       UIHelper.verticalSpaceSmall,
@@ -218,20 +214,27 @@ class PayeeFormPage extends StatelessWidget {
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
+      InputDecorator(
         decoration: InputDecoration(
-          labelText: 'Name',
+          labelText: 'Name2',
           border: OutlineInputBorder(),
         ),
+        child: Text(
+          'Hello',
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
         initialValue: 'Default',
         validator: (value) {
           if (value == 'Default') {
             return 'Change it';
           }
         },
-        scrollPadding: EdgeInsets.all(68),
         onSaved: (value) {
-          context.read<PayeeFormBloc>().name = value ?? '';
+          //  context.read<PayeeFormBloc>().name = value ?? '';
         },
       ),
     ];

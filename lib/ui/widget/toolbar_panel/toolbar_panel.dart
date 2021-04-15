@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter_3/ui/theme/toolbar/toolbar_theme.dart';
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
 import 'package:provider/provider.dart';
@@ -45,9 +46,10 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.watch<ToolbarPanelBloc>();
+    var theme = ToolbarTheme.of(context);
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      height: bloc.isHidden ? 0 : 48,
+      duration: theme.animationDuration,
+      height: bloc.isHidden ? 0 : theme.topBarHeight,
       color: Colors.grey,
       transformAlignment: AlignmentDirectional.bottomCenter,
       child: Row(
@@ -87,12 +89,11 @@ class BottomBar extends StatelessWidget {
     var scaffoldContext = Scaffold.of(context).context;
     var bottom = MediaQuery.of(scaffoldContext).viewInsets.bottom;
     var isHidden = bloc.isHidden && bottom == 0;
+    var theme = ToolbarTheme.of(context);
+
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      height: isHidden ? 0 : 48,
-      margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
+      duration: theme.animationDuration,
+      height: isHidden ? 0 : theme.bottomBarHeight,
       color: Colors.grey,
       child: Row(
         children: [
