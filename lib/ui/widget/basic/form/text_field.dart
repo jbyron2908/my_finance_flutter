@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
-  const AppTextField({
+  AppTextField({
     Key? key,
     this.validator,
     this.onSaved,
     this.label,
     this.initialValue,
-  }) : super(key: key);
+    TextEditingController? controller,
+  })  : _controller = controller ?? TextEditingController(text: initialValue),
+        super(key: key);
 
   final String? label;
   final String? initialValue;
   final String? Function(String?)? validator;
+  final TextEditingController _controller;
   final void Function(String?)? onSaved;
 
   @override
@@ -21,7 +24,7 @@ class AppTextField extends StatelessWidget {
         labelText: label,
         border: OutlineInputBorder(),
       ),
-      initialValue: initialValue,
+      controller: _controller,
       validator: validator,
       onSaved: onSaved,
     );

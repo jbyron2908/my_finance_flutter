@@ -45,25 +45,26 @@ class PayeeFormPage extends StatelessWidget {
             var bloc = context.read<ToolbarPanelBloc>();
             bloc.updateBottomRightChildren([]);
           },
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onPanDown: (_) {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Form(
-              key: bloc.formKey,
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    ...buildFormFields(context),
-                    ElevatedButton(
-                      onPressed: () => bloc.submit(context),
-                      child: Text('Sumbit'),
-                    ),
-                  ],
+          child: Form(
+            key: bloc.formKey,
+            child: ListView(
+              children: [
+                AppTextField(
+                  label: 'Name',
+                  initialValue: 'Default',
+                  validator: (value) {
+                    if (value == 'Default') {
+                      return 'Change it';
+                    }
+                  },
                 ),
-              ),
+                UIHelper.verticalSpaceSmall,
+                ...buildFormFields(context),
+                ElevatedButton(
+                  onPressed: () => bloc.submit(context),
+                  child: Text('Sumbit'),
+                ),
+              ],
             ),
           ),
         );
@@ -74,16 +75,12 @@ class PayeeFormPage extends StatelessWidget {
   List<Widget> buildFormFields(BuildContext context) {
     return <Widget>[
       AppTextField(
-        key: Key('1'),
         label: 'Name',
         initialValue: 'Default',
         validator: (value) {
           if (value == 'Default') {
             return 'Change it';
           }
-        },
-        onSaved: (value) {
-          context.read<PayeeFormBloc>().name = value ?? '';
         },
       ),
       UIHelper.verticalSpaceSmall,
