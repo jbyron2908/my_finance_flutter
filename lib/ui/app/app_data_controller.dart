@@ -1,42 +1,74 @@
-// import 'package:mobx/mobx.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/account/account_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/category/category_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/label/label_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/operation_state/operation_state_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/operation_type/operation_type_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/payee/payee_model.dart';
-// import 'package:my_finance_flutter_2/core/bloc/model/profile/profile_model.dart';
-// import 'package:my_finance_flutter_2/ui/app/app_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
+import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
+import 'package:my_finance_flutter_3/core/domain/model/label/label_model.dart';
+import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
+import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
+import 'package:my_finance_flutter_3/core/domain/model/template_operation/template_operation_model.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/account/account_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/category/category_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/label/label_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
+import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
+import 'package:provider/provider.dart';
 
-// class AppDataController {
-//   AppDataController({
-//     required AppController appController,
-//   }) {
-//     profileList = ObservableStream(
-//       appController.profileRepository.watchAll(),
-//     );
-//     accountList = ObservableStream(
-//       appController.accountRepository.watchAll(),
-//     );
-//     categoryList = ObservableStream(
-//       appController.categoryRepository.watchAll(),
-//     );
-//     payeeList = ObservableStream(
-//       appController.payeeRepository.watchAll(),
-//     );
-//     labelList = ObservableStream(
-//       appController.labelRepository.watchAll(),
-//     );
-//     operationTypeList = ObservableList.of(operationTypeList);
-//     operationStateList = ObservableList.of(operationStateList);
-//   }
+class AppDataController extends StatelessWidget {
+  const AppDataController({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
-//   late ObservableStream<List<ProfileModel>> profileList;
-//   late ObservableStream<List<AccountModel>> accountList;
-//   late ObservableStream<List<CategoryModel>> categoryList;
-//   late ObservableStream<List<PayeeModel>> payeeList;
-//   late ObservableStream<List<LabelModel>> labelList;
+  final Widget child;
 
-//   late ObservableList<OperationTypeModel> operationTypeList;
-//   late ObservableList<OperationStateModel> operationStateList;
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        StreamProvider<List<ProfileModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<ProfileRepository>();
+            return repo.watchAll();
+          },
+        ),
+        StreamProvider<List<AccountModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<AccountRepository>();
+            return repo.watchAll();
+          },
+        ),
+        StreamProvider<List<CategoryModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<CategoryRepository>();
+            return repo.watchAll();
+          },
+        ),
+        StreamProvider<List<PayeeModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<PayeeRepository>();
+            return repo.watchAll();
+          },
+        ),
+        StreamProvider<List<LabelModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<LabelRepository>();
+            return repo.watchAll();
+          },
+        ),
+        StreamProvider<List<TemplateOperationModel>>(
+          initialData: [],
+          create: (context) {
+            var repo = context.read<TemplateOperationRepository>();
+            return repo.watchAll();
+          },
+        ),
+      ],
+      child: child,
+    );
+  }
+}
