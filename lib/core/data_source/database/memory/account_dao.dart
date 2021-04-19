@@ -1,9 +1,11 @@
-import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
 import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
+import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
 import 'package:rxdart/subjects.dart';
 
 class MemoryAccountDao implements AccountDao {
   var table = BehaviorSubject<List<AccountModel>>();
+  List<AccountModel> get currentList => [...?table.valueWrapper?.value];
+
   int autoId = 0;
 
   @override
@@ -17,7 +19,7 @@ class MemoryAccountDao implements AccountDao {
   }
 
   void deleteById(int? id) async {
-    var list = await table.first;
+    var list = currentList;
     list.removeWhere(
       (element) => element.meta.id == id,
     );
@@ -28,12 +30,11 @@ class MemoryAccountDao implements AccountDao {
   Future save(AccountModel model) async {
     if (model.meta.id == null) {
       var newModel = addAutoId(model);
-      var list = await table.first;
-      list.add(newModel);
+      var list = currentList..add(newModel);
       table.add(list);
     } else {
       deleteById(model.meta.id);
-      var list = await table.first;
+      var list = currentList;
       list.add(model);
       table.add(list);
     }
@@ -49,7 +50,7 @@ class MemoryAccountDao implements AccountDao {
 
   @override
   Future saveAll(List<AccountModel> modelList) async {
-    var list = await table.first;
+    var list = currentList;
     list.addAll(modelList);
     table.add(list);
   }

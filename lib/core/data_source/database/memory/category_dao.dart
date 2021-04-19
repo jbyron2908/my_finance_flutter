@@ -1,9 +1,11 @@
-import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
 import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
+import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
 import 'package:rxdart/subjects.dart';
 
 class MemoryCategoryDao implements CategoryDao {
   var table = BehaviorSubject<List<CategoryModel>>();
+  List<CategoryModel> get currentList => [...?table.valueWrapper?.value];
+
   int autoId = 0;
 
   @override
@@ -17,7 +19,7 @@ class MemoryCategoryDao implements CategoryDao {
   }
 
   void deleteById(int? id) async {
-    var list = await table.first;
+    var list = currentList;
     list.removeWhere(
       (element) => element.meta.id == id,
     );
@@ -28,12 +30,12 @@ class MemoryCategoryDao implements CategoryDao {
   Future save(CategoryModel model) async {
     if (model.meta.id == null) {
       var newModel = addAutoId(model);
-      var list = await table.first;
+      var list = currentList;
       list.add(newModel);
       table.add(list);
     } else {
       deleteById(model.meta.id);
-      var list = await table.first;
+      var list = currentList;
       list.add(model);
       table.add(list);
     }
@@ -49,7 +51,7 @@ class MemoryCategoryDao implements CategoryDao {
 
   @override
   Future saveAll(List<CategoryModel> modelList) async {
-    var list = await table.first;
+    var list = currentList;
     list.addAll(modelList);
     table.add(list);
   }
