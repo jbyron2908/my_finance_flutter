@@ -9,6 +9,7 @@ import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart'
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
+import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_scroll_observer.dart';
 import 'package:provider/provider.dart';
 
 class PayeeFormBloc {
@@ -53,28 +54,34 @@ class PayeeFormPage extends StatelessWidget {
             var bloc = context.read<ToolbarPanelBloc>();
             bloc.updateBottomRightChildren([]);
           },
-          child: Form(
-            key: bloc.formKey,
-            child: ListView(
-              children: [
-                AppTextField(
-                  label: 'Name',
-                  validator: (value) {
-                    if (value == 'Default') {
-                      return 'Change it';
-                    }
-                  },
-                  onSaved: (value) => bloc.name = value ?? '',
+          child: Scaffold(
+            body: Form(
+              key: bloc.formKey,
+              child: ToolbarScrollObserver(
+                child: ListView(
+                  children: [
+                    AppTextField(
+                      label: 'Name',
+                      validator: (value) {
+                        if (value == 'Default') {
+                          return 'Change it';
+                        }
+                      },
+                      onSaved: (value) => bloc.name = value ?? '',
+                    ),
+                    UIHelper.verticalSpaceSmall,
+                    ...buildFormFields(context),
+                    UIHelper.verticalSpaceSmall,
+                    ElevatedButton(
+                      onPressed: () async {
+                        await bloc.submit(context);
+                        await context.router.pop();
+                      },
+                      child: Text('Sumbit'),
+                    ),
+                  ],
                 ),
-                UIHelper.verticalSpaceSmall,
-                ElevatedButton(
-                  onPressed: () async {
-                    await bloc.submit(context);
-                    await context.router.pop();
-                  },
-                  child: Text('Sumbit'),
-                ),
-              ],
+              ),
             ),
           ),
         );
@@ -103,6 +110,116 @@ class PayeeFormPage extends StatelessWidget {
         },
         onSaved: (value) {
           context.read<PayeeFormBloc>().picker = value ?? 0;
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
+        },
+      ),
+      UIHelper.verticalSpaceSmall,
+      AppTextField(
+        label: 'Name',
+        initialValue: 'Default',
+        validator: (value) {
+          if (value == 'Default') {
+            return 'Change it';
+          }
         },
       ),
     ];
