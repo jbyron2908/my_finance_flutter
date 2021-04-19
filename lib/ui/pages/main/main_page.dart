@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: [PlaygroundRouter(), DebugRouter(), ManagerRouter()],
+      routes: [ManagerRouter(), PlaygroundRouter(), DebugRouter()],
       builder: (context, child, animation) {
         return ToolbarPanel(
           child: LifecycleWidget(

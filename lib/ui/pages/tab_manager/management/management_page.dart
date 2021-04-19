@@ -32,7 +32,7 @@ class ManagementPage extends StatelessWidget {
           leading: Icon(
             Icons.people,
           ),
-          onTap: () => context.router.push(PayeeFormRoute()),
+          onTap: () => context.router.push(PayeeListRoute()),
         ),
       ],
     );
