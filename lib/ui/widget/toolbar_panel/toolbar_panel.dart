@@ -19,6 +19,7 @@ class ToolbarPanel extends StatelessWidget {
         return ToolbarPanelBloc();
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -94,6 +95,7 @@ class BottomBar extends StatelessWidget {
     return AnimatedContainer(
       duration: theme.animationDuration,
       height: isHidden ? 0 : theme.bottomBarHeight,
+      margin: EdgeInsets.only(bottom: bottom),
       color: Colors.grey,
       child: Row(
         children: [
