@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-void showSideSheet({
+Future<T?> showSideSheet<T>({
   required BuildContext context,
   required Widget Function(BuildContext) builder,
   bool rightSide = true,
-}) {
-  showGeneralDialog(
+}) async {
+  return showGeneralDialog<T>(
     context: context,
     barrierLabel: 'SidePanel',
     barrierDismissible: true,
