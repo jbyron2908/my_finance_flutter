@@ -49,3 +49,4 @@ app.*.map.json
 *.jorm.dart
 *.g.dart
 *.freezed.dart
+*.gr.dart
