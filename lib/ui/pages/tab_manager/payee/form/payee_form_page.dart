@@ -4,12 +4,9 @@ import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/picker_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
-import 'package:my_finance_flutter_3/ui/widget/basic/lifecycle_widget.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart';
+import 'package:my_finance_flutter_3/ui/widget/bottom_action_bar/bottom_action_bar.dart';
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_button.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
-import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_scroll_observer.dart';
 import 'package:provider/provider.dart';
 
 class PayeeFormBloc {
@@ -41,46 +38,31 @@ class PayeeFormPage extends StatelessWidget {
       builder: (context, _) {
         var bloc = context.read<PayeeFormBloc>();
 
-        return LifecycleWidget(
-          onTopStack: (context) {
-            var bloc = context.read<ToolbarPanelBloc>();
-            bloc.updateBottomRightChildren([
-              ToolbarButton(
-                child: Icon(Icons.add),
+        return Scaffold(
+          body: BottomActionBar(
+            actionList: [
+              BottomActionItem(
+                icon: Icons.check,
+                onTap: () {
+                  bloc.submit(context);
+                  context.router.pop();
+                },
               ),
-            ]);
-          },
-          onBackStack: (context) {
-            var bloc = context.read<ToolbarPanelBloc>();
-            bloc.updateBottomRightChildren([]);
-          },
-          child: Scaffold(
-            body: Form(
+            ],
+            child: Form(
               key: bloc.formKey,
-              child: ToolbarScrollObserver(
-                child: ListView(
-                  children: [
-                    AppTextField(
-                      label: 'Name',
-                      validator: (value) {
-                        if (value == 'Default') {
-                          return 'Change it';
-                        }
-                      },
-                      onSaved: (value) => bloc.name = value ?? '',
-                    ),
-                    UIHelper.verticalSpaceSmall,
-                    ...buildFormFields(context),
-                    UIHelper.verticalSpaceSmall,
-                    ElevatedButton(
-                      onPressed: () async {
-                        await bloc.submit(context);
-                        await context.router.pop();
-                      },
-                      child: Text('Sumbit'),
-                    ),
-                  ],
-                ),
+              child: ListView(
+                children: [
+                  AppTextField(
+                    label: 'Name',
+                    validator: (value) {
+                      if (value == 'Default') {
+                        return 'Change it';
+                      }
+                    },
+                    onSaved: (value) => bloc.name = value ?? '',
+                  ),
+                ],
               ),
             ),
           ),
