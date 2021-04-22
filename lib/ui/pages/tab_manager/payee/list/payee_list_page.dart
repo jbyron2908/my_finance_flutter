@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/pages/tab_manager/payee/list/payee_list_controller.dart';
+import 'package:my_finance_flutter_3/ui/pages/tab_manager/payee/select/payee_select_page.dart';
 import 'package:my_finance_flutter_3/ui/widget/bottom_action_bar/bottom_action_bar.dart';
-import 'package:my_finance_flutter_3/ui/widget/picker_modal/picker_modal.dart';
 import 'package:provider/provider.dart';
 
 class PayeeListPage extends StatelessWidget {
@@ -19,17 +19,7 @@ class PayeeListPage extends StatelessWidget {
               BottomActionItem(
                 icon: Icons.self_improvement_outlined,
                 onTap: () async {
-                  var result = await showPickerBottomSheet(
-                    context: context,
-                    buildList: (context) {
-                      return List.generate(25, (index) => index);
-                    },
-                    buildItem: (context, item) {
-                      return ListTile(
-                        title: Text('Item $item'),
-                      );
-                    },
-                  );
+                  var result = await showPayeeMultiSelector(context);
                   print('Result - $result');
                 },
               ),
