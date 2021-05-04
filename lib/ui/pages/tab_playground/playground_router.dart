@@ -12,6 +12,7 @@ const playgroundRouter = AutoRoute(
     AutoRoute(
       path: '',
       page: PlaygroundPage,
+      initial: true,
     ),
     AutoRoute(
       path: 'counter',

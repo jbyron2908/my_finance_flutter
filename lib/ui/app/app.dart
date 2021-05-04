@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/ui/app/app_controller.dart';
 
@@ -13,9 +14,9 @@ class MyFinanceApp extends StatelessWidget {
         title: 'Flutter Demo',
         routeInformationParser: appRouter.defaultRouteParser(),
         routerDelegate: appRouter.delegate(
-          navigatorObservers: [
-            routeObserver,
-            // LoggerRouteObserver(),
+          navigatorObservers: () => [
+            // routeObserver,
+            LoggerRouteObserver(appRouter),
           ],
         ),
       ),
@@ -25,7 +26,11 @@ class MyFinanceApp extends StatelessWidget {
 
 final RouteObserver<Route> routeObserver = RouteObserver<Route>();
 
-class LoggerRouteObserver extends RouteObserver {
+class LoggerRouteObserver extends AutoRouterObserver {
+  LoggerRouteObserver(this.router);
+
+  final StackRouter router;
+
   @override
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
@@ -38,5 +43,33 @@ class LoggerRouteObserver extends RouteObserver {
     super.didPush(route, previousRoute);
     print('Push route: ${route.settings.name}');
     print('Push from route: ${previousRoute?.settings.name}');
+  }
+
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    print('Replace route: ${newRoute?.settings.name}');
+    print('Replace from route: ${oldRoute?.settings.name}');
+  }
+
+  @override
+  void didRemove(Route route, Route? previousRoute) {
+    super.didRemove(route, previousRoute);
+    print('Remove route: ${route.settings.name}');
+    print('Remove from route: ${previousRoute?.settings.name}');
+  }
+
+  @override
+  void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
+    super.didChangeTabRoute(route, previousRoute);
+    print('Change tab route: ${route.name}');
+    print('Change tab from route: ${previousRoute.name}');
+  }
+
+  @override
+  void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
+    super.didInitTabRoute(route, previousRoute);
+    print('Init tab route: ${route.name}');
+    print('Init tab from route: ${previousRoute?.name}');
   }
 }

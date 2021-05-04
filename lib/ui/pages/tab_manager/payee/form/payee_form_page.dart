@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/picker_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart';
@@ -9,26 +7,11 @@ import 'package:my_finance_flutter_3/ui/widget/bottom_action_bar/bottom_action_b
 import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
 import 'package:provider/provider.dart';
 
-class PayeeFormBloc {
-  PayeeFormBloc(this.payeeRepository);
-
-  final formKey = GlobalKey<FormState>();
-  final PayeeRepository payeeRepository;
-
-  String name = '';
-  int picker = 0;
-
-  Future submit(BuildContext context) async {
-    if (formKey.currentState?.validate() ?? false) {
-      formKey.currentState?.save();
-
-      var model = PayeeModel(name: name);
-      await payeeRepository.save(model);
-    }
-  }
-}
+import 'payee_form_bloc.dart';
 
 class PayeeFormPage extends StatelessWidget {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Provider(
@@ -43,14 +26,18 @@ class PayeeFormPage extends StatelessWidget {
             actionList: [
               BottomActionItem(
                 icon: Icons.check,
-                onTap: () {
-                  bloc.submit(context);
-                  context.router.pop();
+                onTap: () async {
+                  var validated = formKey.currentState?.validate();
+                  if (validated == true) {
+                    formKey.currentState?.save();
+                    await bloc.save();
+                    await context.router.pop();
+                  }
                 },
               ),
             ],
             child: Form(
-              key: bloc.formKey,
+              key: formKey,
               child: ListView(
                 children: [
                   AppTextField(
@@ -60,7 +47,9 @@ class PayeeFormPage extends StatelessWidget {
                         return 'Change it';
                       }
                     },
-                    onSaved: (value) => bloc.name = value ?? '',
+                    onSaved: (value) {
+                      bloc.name = value ?? '';
+                    },
                   ),
                 ],
               ),

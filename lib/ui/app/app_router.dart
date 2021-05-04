@@ -15,9 +15,9 @@ import 'package:my_finance_flutter_3/ui/pages/tab_playground/playground_router.d
       initial: true,
     ),
     AutoRoute(
+      name: 'MainRouter',
       path: '/main',
       page: MainPage,
-      usesTabsRouter: true,
       children: [
         debugRouter,
         managerRouter,

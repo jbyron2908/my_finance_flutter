@@ -9,6 +9,7 @@ const debugRouter = AutoRoute(
     AutoRoute(
       path: '',
       page: DebugToolsPage,
+      initial: true,
     ),
   ],
 );

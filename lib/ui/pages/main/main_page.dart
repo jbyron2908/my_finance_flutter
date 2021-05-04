@@ -6,7 +6,7 @@ import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dar
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AutoTabsRouter(
+    return AutoTabsScaffold(
       routes: [
         PlaygroundRouter(),
         ManagerRouter(),
@@ -17,7 +17,7 @@ class MainPage extends StatelessWidget {
       builder: (context, child, animation) {
         return WillPopScope(
           onWillPop: () async {
-            var current = context.tabsRouter.topMost;
+            var current = context.router.topMost;
 
             if (current.stack.length > 1) {
               await current.pop();
@@ -30,11 +30,11 @@ class MainPage extends StatelessWidget {
 
             return false;
           },
-          child: Scaffold(
-            body: child,
-            bottomNavigationBar: buildBottomNavBar(context.tabsRouter),
-          ),
+          child: child,
         );
+      },
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return buildBottomNavBar(tabsRouter);
       },
     );
   }

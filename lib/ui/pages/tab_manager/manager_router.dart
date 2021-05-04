@@ -11,6 +11,7 @@ const managerRouter = AutoRoute(
     AutoRoute(
       path: '',
       page: ManagementPage,
+      initial: true,
     ),
     AutoRoute(
       path: 'payee_list',

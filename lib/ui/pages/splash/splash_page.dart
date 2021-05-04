@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
       onRead: (context) async {
         var database = context.read<DatabaseClient>();
         await database.setup();
-        await context.router.replace(MainRoute());
+        await context.router.replace(MainRouter());
       },
       child: Scaffold(
         body: Center(
