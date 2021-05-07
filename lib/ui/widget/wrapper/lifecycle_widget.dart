@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:my_finance_flutter_3/ui/app/app.dart';
+import 'package:my_finance_flutter_3/ui/widget/wrapper/stack_router_observer.dart';
 
 class LifecycleWidget extends StatefulWidget {
   const LifecycleWidget({
@@ -25,13 +26,19 @@ class LifecycleWidget extends StatefulWidget {
   _LifecycleWidgetState createState() => _LifecycleWidgetState();
 }
 
-class _LifecycleWidgetState extends State<LifecycleWidget> with RouteAware {
+class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
+  var initialized = false;
+  StackRouterObserver? routeObserver;
+
   @override
   Widget build(BuildContext context) {
-    widget.onInit?.call(context);
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onRead?.call(context);
-    });
+    if (initialized == false) {
+      initialized = true;
+      widget.onInit?.call(context);
+      SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+        widget.onRead?.call(context);
+      });
+    }
 
     return widget.child;
   }
@@ -39,7 +46,9 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
+    routeObserver =
+        RouterScope.of(context)?.firstObserverOfType<StackRouterObserver>();
+    routeObserver?.subscribe(context, this);
   }
 
   @override
@@ -47,39 +56,21 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with RouteAware {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       widget.onDispose?.call(context);
     });
+    routeObserver?.unsubscribe(this);
     super.dispose();
-    routeObserver.unsubscribe(this);
   }
 
   @override
-  void didPop() {
-    super.didPop();
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onBackStack?.call(context);
-    });
-  }
-
-  @override
-  void didPushNext() {
-    super.didPushNext();
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onBackStack?.call(context);
-    });
-  }
-
-  @override
-  void didPush() {
-    super.didPush();
+  void onTopStack() {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
       widget.onTopStack?.call(context);
     });
   }
 
   @override
-  void didPopNext() {
-    super.didPopNext();
+  void onBackStack() {
     SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      widget.onTopStack?.call(context);
+      widget.onBackStack?.call(context);
     });
   }
 }

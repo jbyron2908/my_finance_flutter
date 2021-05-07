@@ -68,7 +68,9 @@ class AppDataController extends StatelessWidget {
           },
         ),
       ],
-      child: child,
+      builder: (context, _) {
+        return child;
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/ui/app/app_controller.dart';
+import 'package:my_finance_flutter_3/ui/widget/wrapper/stack_router_observer.dart';
 
 import 'app_router.gr.dart';
 
@@ -10,21 +11,23 @@ class MyFinanceApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppController(
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(
-          navigatorObservers: () => [
-            // routeObserver,
-            LoggerRouteObserver(appRouter),
-          ],
-        ),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            title: 'Flutter Demo',
+            routeInformationParser: appRouter.defaultRouteParser(),
+            routerDelegate: appRouter.delegate(
+              navigatorObservers: () => [
+                StackRouterObserver(),
+                // LoggerRouteObserver(appRouter),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 }
-
-final RouteObserver<Route> routeObserver = RouteObserver<Route>();
 
 class LoggerRouteObserver extends AutoRouterObserver {
   LoggerRouteObserver(this.router);

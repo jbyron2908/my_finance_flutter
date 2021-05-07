@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:my_finance_flutter_3/ui/widget/wrapper/lifecycle_widget.dart';
 
 class MainPage extends StatelessWidget {
+  final initialIndex = 2;
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
@@ -15,22 +18,29 @@ class MainPage extends StatelessWidget {
         DebugRouter(),
       ],
       builder: (context, child, animation) {
-        return WillPopScope(
-          onWillPop: () async {
-            var current = context.router.topMost;
-
-            if (current.stack.length > 1) {
-              await current.pop();
-            } else {
-              var tabsRouter = context.tabsRouter;
-              if (tabsRouter.activeIndex != 2) {
-                tabsRouter.setActiveIndex(2);
-              }
-            }
-
-            return false;
+        return LifecycleWidget(
+          onRead: (context) {
+            context.tabsRouter.setActiveIndex(initialIndex);
           },
-          child: child,
+          child: WillPopScope(
+            onWillPop: () async {
+              var tabsRouter = context.tabsRouter;
+              var current = tabsRouter.topMost;
+
+              if (current.stack.length > 1) {
+                await current.pop();
+              } else {
+                if (tabsRouter.activeIndex != initialIndex) {
+                  tabsRouter.setActiveIndex(initialIndex);
+                } else {
+                  return true;
+                }
+              }
+
+              return false;
+            },
+            child: child,
+          ),
         );
       },
       bottomNavigationBuilder: (_, tabsRouter) {
