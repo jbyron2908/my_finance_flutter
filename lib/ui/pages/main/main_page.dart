@@ -11,11 +11,11 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: [
-        PlaygroundRouter(),
-        ManagerRouter(),
-        ManagerRouter(),
-        ManagerRouter(),
         DebugRouter(),
+        ManagerRouter(),
+        ManagerRouter(),
+        ManagerRouter(),
+        PlaygroundRouter(),
       ],
       builder: (context, child, animation) {
         return LifecycleWidget(

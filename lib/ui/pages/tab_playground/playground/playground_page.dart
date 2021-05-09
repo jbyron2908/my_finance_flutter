@@ -116,8 +116,11 @@ class PlaygroundPage extends StatelessWidget {
           },
         ),
         ListTile(
-          title: Text('Floating Panel'),
+          title: Text('Rx Counter'),
           leading: FaIcon(Icons.add),
+          onTap: () {
+            context.router.push(RxCounterRoute());
+          },
         ),
         ListTile(
           title: Text('Floating Panel'),
