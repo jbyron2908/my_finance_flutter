@@ -9,10 +9,6 @@ class PayeeFormBloc {
   String name = '';
   int picker = 0;
 
-  String? validateName(String value) {
-    return null;
-  }
-
   Future<bool> save() async {
     var model = PayeeModel(name: name);
     await payeeRepository.save(model);

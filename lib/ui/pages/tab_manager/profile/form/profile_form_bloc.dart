@@ -9,17 +9,6 @@ class ProfileFormBloc {
   String name = '';
   String currency = '';
 
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Required';
-    }
-    return null;
-  }
-
-  String? validateCurrency(String? value) {
-    return null;
-  }
-
   Future<bool> save() async {
     var model = ProfileModel(name: name, currency: currency);
     await profileRepository.save(model);

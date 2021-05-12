@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/picker_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart';
@@ -42,11 +43,9 @@ class PayeeFormPage extends StatelessWidget {
                 children: [
                   AppTextField(
                     label: 'Name',
-                    validator: (value) {
-                      if (value == 'Default') {
-                        return 'Change it';
-                      }
-                    },
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: 'Required'),
+                    ]),
                     onSaved: (value) {
                       bloc.name = value ?? '';
                     },
