@@ -20,7 +20,7 @@ class ManagementPage extends StatelessWidget {
           ListTile(
             title: Text('Profiles'),
             leading: Icon(Icons.account_circle),
-            // onTap: () => controller.goToProfileList(),
+            onTap: () => context.router.push(ProfileListRoute()),
           ),
           UIHelper.horizontalDivider,
           ListTile(
