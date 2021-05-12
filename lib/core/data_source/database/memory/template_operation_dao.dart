@@ -3,9 +3,8 @@ import 'package:my_finance_flutter_3/core/domain/model/template_operation/templa
 import 'package:rxdart/subjects.dart';
 
 class MemoryTemplateOperationDao implements TemplateOperationDao {
-  var table = BehaviorSubject<List<TemplateOperationModel>>();
-  List<TemplateOperationModel> get currentList =>
-      [...?table.valueWrapper?.value];
+  var table = BehaviorSubject<List<TemplateOperationModel>>.seeded([]);
+  List<TemplateOperationModel> get currentList => [...table.value];
 
   int autoId = 0;
 

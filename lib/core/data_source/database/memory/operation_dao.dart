@@ -3,8 +3,8 @@ import 'package:my_finance_flutter_3/core/domain/model/operation/operation_model
 import 'package:rxdart/subjects.dart';
 
 class MemoryOperationDao implements OperationDao {
-  var table = BehaviorSubject<List<OperationModel>>();
-  List<OperationModel> get currentList => [...?table.valueWrapper?.value];
+  var table = BehaviorSubject<List<OperationModel>>.seeded([]);
+  List<OperationModel> get currentList => [...table.value];
 
   int autoId = 0;
 

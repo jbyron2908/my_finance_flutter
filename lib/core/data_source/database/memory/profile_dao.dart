@@ -3,8 +3,8 @@ import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dar
 import 'package:rxdart/subjects.dart';
 
 class MemoryProfileDao implements ProfileDao {
-  var table = BehaviorSubject<List<ProfileModel>>();
-  List<ProfileModel> get currentList => [...?table.valueWrapper?.value];
+  var table = BehaviorSubject<List<ProfileModel>>.seeded([]);
+  List<ProfileModel> get currentList => [...table.value];
 
   int autoId = 0;
 

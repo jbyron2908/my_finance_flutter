@@ -47,7 +47,7 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
   void didChangeDependencies() {
     super.didChangeDependencies();
     routeObserver =
-        RouterScope.of(context)?.firstObserverOfType<StackRouterObserver>();
+        RouterScope.of(context).firstObserverOfType<StackRouterObserver>();
     routeObserver?.subscribe(context, this);
   }
 

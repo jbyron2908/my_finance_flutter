@@ -3,8 +3,8 @@ import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
 import 'package:rxdart/subjects.dart';
 
 class MemoryPayeeDao implements PayeeDao {
-  final table = BehaviorSubject<List<PayeeModel>>();
-  List<PayeeModel> get currentList => [...?table.valueWrapper?.value];
+  final table = BehaviorSubject<List<PayeeModel>>.seeded([]);
+  List<PayeeModel> get currentList => [...table.value];
 
   int autoId = 0;
 

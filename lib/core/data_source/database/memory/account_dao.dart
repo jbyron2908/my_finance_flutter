@@ -3,8 +3,8 @@ import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dar
 import 'package:rxdart/subjects.dart';
 
 class MemoryAccountDao implements AccountDao {
-  var table = BehaviorSubject<List<AccountModel>>();
-  List<AccountModel> get currentList => [...?table.valueWrapper?.value];
+  var table = BehaviorSubject<List<AccountModel>>.seeded([]);
+  List<AccountModel> get currentList => [...table.value];
 
   int autoId = 0;
 
