@@ -32,7 +32,7 @@ class ManagementPage extends StatelessWidget {
           ListTile(
             title: Text('Categories'),
             leading: Icon(Icons.category),
-            // onTap: () => controller.goToCategoryList(),
+            onTap: () => context.router.push(CategoryListRoute()),
           ),
           UIHelper.horizontalDivider,
           ListTile(
