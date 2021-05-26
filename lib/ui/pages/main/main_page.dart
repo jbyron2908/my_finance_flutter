@@ -5,15 +5,13 @@ import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dar
 import 'package:my_finance_flutter_3/ui/widget/wrapper/lifecycle_widget.dart';
 
 class MainPage extends StatelessWidget {
-  final initialIndex = 2;
+  final initialIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: [
         DebugRouter(),
-        ManagerRouter(),
-        ManagerRouter(),
         ManagerRouter(),
         PlaygroundRouter(),
       ],
@@ -62,16 +60,6 @@ class MainPage extends StatelessWidget {
         BottomNavBarItem(
           activeColor: Colors.blue,
           title: Text('Management'),
-          icon: Icon(Icons.ac_unit),
-        ),
-        BottomNavBarItem(
-          title: Text('Management'),
-          activeColor: Colors.blue,
-          icon: Icon(Icons.ac_unit),
-        ),
-        BottomNavBarItem(
-          title: Text('Management'),
-          activeColor: Colors.blue,
           icon: Icon(Icons.ac_unit),
         ),
         BottomNavBarItem(
