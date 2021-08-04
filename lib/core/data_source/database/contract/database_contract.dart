@@ -7,15 +7,13 @@ import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dar
 import 'package:my_finance_flutter_3/core/domain/model/template_operation/template_operation_model.dart';
 
 abstract class DatabaseClient {
-  late ProfileDao profileDao;
-  late AccountDao accountDao;
-  late CategoryDao categoryDao;
-  late PayeeDao payeeDao;
-  late OperationDao operationDao;
-  late LabelDao labelDao;
-  late TemplateOperationDao templateOperationDao;
-
-  Future setup();
+  Future<ProfileDao> profileDao();
+  Future<AccountDao> accountDao();
+  Future<CategoryDao> categoryDao();
+  Future<PayeeDao> payeeDao();
+  Future<OperationDao> operationDao();
+  Future<LabelDao> labelDao();
+  Future<TemplateOperationDao> templateOperationDao();
 }
 
 abstract class DatabaseDao<T> {

@@ -1,18 +1,21 @@
-import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
 import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
+import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
 
 abstract class BaseRepository<T> {
-  DatabaseDao<T> get dao;
+  Future<DatabaseDao<T>> getDao();
 
   Future save(T model) async {
+    var dao = await getDao();
     return dao.save(model);
   }
 
   Future saveAll(List<T> modelList) async {
+    var dao = await getDao();
     return dao.saveAll(modelList);
   }
 
   Future delete(T model) async {
+    var dao = await getDao();
     return dao.delete(model);
   }
 
@@ -23,10 +26,12 @@ abstract class BaseRepository<T> {
   }
 
   Future clearAll() async {
+    var dao = await getDao();
     return dao.clearAll();
   }
 
-  Stream<List<T>> watchAll() {
+  Future<Stream<List<T>>> watchAll() async {
+    var dao = await getDao();
     return dao.watchAll();
   }
 }

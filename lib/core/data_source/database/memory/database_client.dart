@@ -9,26 +9,39 @@ import 'package:my_finance_flutter_3/core/data_source/database/memory/template_o
 
 class MemoryDatabaseClient implements DatabaseClient {
   @override
-  AccountDao accountDao = MemoryAccountDao();
+  Future<AccountDao> accountDao() async {
+    return MemoryAccountDao();
+  }
 
   @override
-  CategoryDao categoryDao = MemoryCategoryDao();
+  Future<CategoryDao> categoryDao() async {
+    return MemoryCategoryDao();
+  }
 
   @override
-  LabelDao labelDao = MemoryLabelDao();
+  Future<LabelDao> labelDao() async {
+    return MemoryLabelDao();
+  }
 
   @override
-  OperationDao operationDao = MemoryOperationDao();
+  Future<OperationDao> operationDao() async {
+    return MemoryOperationDao();
+  }
 
   @override
-  PayeeDao payeeDao = MemoryPayeeDao();
+  Future<PayeeDao> payeeDao() async {
+    return MemoryPayeeDao();
+  }
 
   @override
-  ProfileDao profileDao = MemoryProfileDao();
+  Future<ProfileDao> profileDao() async {
+    return MemoryProfileDao();
+  }
 
   @override
-  TemplateOperationDao templateOperationDao = MemoryTemplateOperationDao();
+  Future<TemplateOperationDao> templateOperationDao() async {
+    return MemoryTemplateOperationDao();
+  }
 
-  @override
   Future setup() async {}
 }
