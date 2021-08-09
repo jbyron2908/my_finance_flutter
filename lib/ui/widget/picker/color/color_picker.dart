@@ -5,7 +5,7 @@ class ColorPicker extends StatelessWidget {
   static Future<Color?> show(BuildContext context) async {
     return showDialog<Color>(
       context: context,
-      builder: (context) => ColorPicker(ColorConstants.colorList),
+      builder: (context) => const ColorPicker(ColorConstants.colorList),
       barrierDismissible: true,
     );
   }
@@ -20,9 +20,9 @@ class ColorPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Pick color'),
+      title: const Text('Pick color'),
       content: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * .9,
           child: GridView.count(
             shrinkWrap: true,
@@ -38,7 +38,7 @@ class ColorPicker extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         )
       ],
     );
@@ -46,7 +46,7 @@ class ColorPicker extends StatelessWidget {
 }
 
 class ColorItem extends StatelessWidget {
-  ColorItem(
+  const ColorItem(
     this.color, {
     Key? key,
   }) : super(key: key);
@@ -60,7 +60,7 @@ class ColorItem extends StatelessWidget {
       child: Container(
         width: 60,
         height: 60,
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,

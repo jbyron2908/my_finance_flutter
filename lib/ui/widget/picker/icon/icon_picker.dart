@@ -7,7 +7,7 @@ class IconPicker extends StatelessWidget {
   static Future<IconData?> show(BuildContext context) async {
     return showDialog<IconData>(
       context: context,
-      builder: (context) => IconPicker(IconConstants.iconList),
+      builder: (context) => const IconPicker(IconConstants.iconList),
       barrierDismissible: true,
     );
   }
@@ -22,9 +22,9 @@ class IconPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Pick icon'),
+      title: const Text('Pick icon'),
       content: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * .9,
           child: GridView.count(
             shrinkWrap: true,
@@ -40,7 +40,7 @@ class IconPicker extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         )
       ],
     );
@@ -48,7 +48,7 @@ class IconPicker extends StatelessWidget {
 }
 
 class IconItem extends StatelessWidget {
-  IconItem(
+  const IconItem(
     this.icon, {
     Key? key,
   }) : super(key: key);

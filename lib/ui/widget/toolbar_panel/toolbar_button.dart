@@ -12,7 +12,7 @@ class ToolbarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 32,
       child: MaterialButton(
         padding: EdgeInsets.zero,

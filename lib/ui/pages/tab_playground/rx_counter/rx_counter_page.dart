@@ -41,7 +41,7 @@ class RxCounterPage extends StatelessWidget {
                 var counter = context.read<RxCounter>();
                 counter.increase1();
               },
-              child: Text('Increase 1'),
+              child: const Text('Increase 1'),
             ),
             RxBuilder(
               builder: (context) {
@@ -54,7 +54,7 @@ class RxCounterPage extends StatelessWidget {
                 var counter = context.read<RxCounter>();
                 counter.increase2();
               },
-              child: Text('Increase 2'),
+              child: const Text('Increase 2'),
             ),
           ],
         ),

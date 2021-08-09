@@ -1,63 +1,68 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
+import 'package:my_finance_flutter_3/core/config/log/logger.dart';
+import 'package:my_finance_flutter_3/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart';
 import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
 import 'package:provider/provider.dart';
 
 class PlaygroundPage extends StatelessWidget {
+  const PlaygroundPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
         ListTile(
-          title: Text('Counter'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.router.push(CounterRoute()),
+          title: const Text('Counter'),
+          leading: const FaIcon(Icons.add),
+          onTap: () {
+            AppRouter.navigateToCounter(context);
+          },
         ),
         ListTile(
-          title: Text('Selectable List'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.router.push(SelectableListRoute()),
+          title: const Text('Selectable List'),
+          leading: const FaIcon(Icons.add),
+          onTap: () {
+            AppRouter.navigateToSelectableList(context);
+          },
+        ),
+        // ListTile(
+        //   title: const Text('Go to index 0'),
+        //   leading: const FaIcon(Icons.add),
+        //   onTap: () => context.tabsRouter.setActiveIndex(0),
+        // ),
+        // ListTile(
+        //   title: const Text('Go to index 1'),
+        //   leading: const FaIcon(Icons.add),
+        //   onTap: () => context.tabsRouter.setActiveIndex(1),
+        // ),
+        // ListTile(
+        //   title: const Text('Go to index 2'),
+        //   leading: const FaIcon(Icons.add),
+        //   onTap: () => context.tabsRouter.setActiveIndex(2),
+        // ),
+        ListTile(
+          title: const Text('Change notifier'),
+          leading: const FaIcon(Icons.add),
+          onTap: () {
+            AppRouter.navigateToChangeNotifier(context);
+          },
         ),
         ListTile(
-          title: Text('Go to index 0'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.tabsRouter.setActiveIndex(0),
-        ),
-        ListTile(
-          title: Text('Go to index 1'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.tabsRouter.setActiveIndex(1),
-        ),
-        ListTile(
-          title: Text('Go to index 2'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.tabsRouter.setActiveIndex(2),
-        ),
-        ListTile(
-          title: Text('Root counter page'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.router.root.push(RootCounterRoute()),
-        ),
-        ListTile(
-          title: Text('Change notifier'),
-          leading: FaIcon(Icons.add),
-          onTap: () => context.router.push(ChangeNotifierRoute()),
-        ),
-        ListTile(
-          title: Text('Hide panel'),
-          leading: FaIcon(Icons.add),
+          title: const Text('Hide panel'),
+          leading: const FaIcon(Icons.add),
           onTap: () {
             var bloc = context.read<ToolbarPanelBloc>();
             bloc.toggle();
           },
         ),
         ListTile(
-          title: Text('Open Side Modal from right'),
-          leading: FaIcon(Icons.add),
+          title: const Text('Open Side Modal from right'),
+          leading: const FaIcon(Icons.add),
           onTap: () async {
             // showSideSheet(
             //   context: context,
@@ -69,7 +74,6 @@ class PlaygroundPage extends StatelessWidget {
             //     );
             //   },
             // );
-            var onReturn = (int index) => print('Index select was $index');
             await showSideSheet(
               context: context,
               builder: (context) {
@@ -84,8 +88,8 @@ class PlaygroundPage extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             onPressed: () {
-                              onReturn(index);
-                              context.router.pop();
+                              Log.i('Index select was $index');
+                              AppRouter.navigateBack(context);
                             },
                             child: Text('Button $index'),
                           ),
@@ -99,8 +103,8 @@ class PlaygroundPage extends StatelessWidget {
           },
         ),
         ListTile(
-          title: Text('Open Side Modal from left'),
-          leading: FaIcon(Icons.add),
+          title: const Text('Open Side Modal from left'),
+          leading: const FaIcon(Icons.add),
           onTap: () {
             showSideSheet(
               rightSide: false,
@@ -109,40 +113,33 @@ class PlaygroundPage extends StatelessWidget {
                 return Container(
                   width: 300,
                   color: Colors.green,
-                  child: Text('Side Modal from left'),
+                  child: const Text('Side Modal from left'),
                 );
               },
             );
           },
         ),
-        ListTile(
-          title: Text('Rx Counter'),
+        const ListTile(
+          title: Text("Floating Panel"),
           leading: FaIcon(Icons.add),
-          onTap: () {
-            context.router.push(RxCounterRoute());
-          },
         ),
-        ListTile(
+        const ListTile(
+          title: Text('Floating Panel'),
+          leading: FaIcon(Icons.add),
+        ),
+        const ListTile(
           title: Text('Floating Panel'),
           leading: FaIcon(Icons.add),
         ),
         ListTile(
-          title: Text('Floating Panel'),
-          leading: FaIcon(Icons.add),
-        ),
-        ListTile(
-          title: Text('Floating Panel'),
-          leading: FaIcon(Icons.add),
-        ),
-        ListTile(
-          title: Text('Floating Panel'),
-          leading: FaIcon(Icons.add),
+          title: const Text('Floating Panel'),
+          leading: const FaIcon(Icons.add),
           onTap: () {
             var bloc = context.read<ToolbarPanelBloc>();
             bloc.toggle();
           },
         ),
-        ListTile(
+        const ListTile(
           title: Text('Floating Panel'),
           leading: FaIcon(Icons.add),
         ),

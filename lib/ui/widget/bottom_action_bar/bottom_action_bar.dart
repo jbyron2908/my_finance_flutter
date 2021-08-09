@@ -58,7 +58,7 @@ class BottomActionBar extends StatelessWidget {
     var actionItem = actionList[index];
     return [
       if (index > 0)
-        VerticalDivider(
+        const VerticalDivider(
           color: Colors.white,
           width: 0,
         ),

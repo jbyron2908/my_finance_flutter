@@ -46,19 +46,19 @@ class PickerItem<T> with ChangeNotifier {
   }
 
   void changeChildren(bool value) {
-    children?.forEach((element) {
+    for (var element in children ?? []) {
       if (selected == null) {
         element.changeSilently(true);
-        element.children?.forEach((element) {
+        for (var element in element.children ?? []) {
           element.changeSilently(true);
-        });
+        }
       } else {
         element.changeSilently(value);
-        element.children?.forEach((element) {
+        for (var element in element.children ?? []) {
           element.changeSilently(value);
-        });
+        }
       }
-    });
+    }
   }
 
   void checkChildren() {
@@ -92,11 +92,9 @@ class PickerItem<T> with ChangeNotifier {
     this.children,
     this.selected = false,
   }) {
-    children?.forEach(
-      (element) {
-        element.parent = this;
-      },
-    );
+    for (var element in children ?? []) {
+      element.parent = this;
+    }
   }
 }
 
@@ -175,7 +173,7 @@ class MultiPickerItemWidget<T> extends StatelessWidget {
               if (children.isNotEmpty)
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: pickerItem.children!.length,
                   itemBuilder: (context, index) {
                     return MultiPickerItemWidget<T>(

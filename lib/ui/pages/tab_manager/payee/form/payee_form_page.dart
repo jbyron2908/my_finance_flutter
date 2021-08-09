@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:my_finance_flutter_3/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/picker_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/side_sheet/side_sheet.dart';
@@ -11,6 +11,10 @@ import 'package:provider/provider.dart';
 import 'payee_form_bloc.dart';
 
 class PayeeFormPage extends StatelessWidget {
+  PayeeFormPage({
+    Key? key,
+  }) : super(key: key);
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -32,7 +36,7 @@ class PayeeFormPage extends StatelessWidget {
                   if (validated == true) {
                     formKey.currentState?.save();
                     await bloc.save();
-                    await context.router.pop();
+                    await AppRouter.navigateBack(context);
                   }
                 },
               ),
@@ -197,9 +201,6 @@ class PayeeFormPage extends StatelessWidget {
 
   Future<int?> showIndexSelector(BuildContext context) async {
     int? result;
-    var onResult = (int index) async {
-      result = index;
-    };
 
     await showSideSheet(
       context: context,
@@ -215,8 +216,8 @@ class PayeeFormPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      onResult(index);
-                      context.router.pop();
+                      result = index;
+                      AppRouter.navigateBack(context);
                     },
                     child: Text('Button $index'),
                   ),

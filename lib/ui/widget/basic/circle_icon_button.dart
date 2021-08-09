@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
-  CircleButton({
+  const CircleButton({
     Key? key,
     this.circleColor = Colors.blue,
     this.elevation = 6,
@@ -28,7 +28,7 @@ class CircleButton extends StatelessWidget {
         color: circleColor,
         elevation: elevation,
         padding: padding,
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         child: child,
       ),
     );

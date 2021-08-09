@@ -5,13 +5,14 @@ import 'package:my_finance_flutter_3/ui/widget/wrapper/stack_router_observer.dar
 
 class LifecycleWidget extends StatefulWidget {
   const LifecycleWidget({
+    Key? key,
     this.onInit,
     this.onRead,
     this.onDispose,
     this.onTopStack,
     this.onBackStack,
     required this.child,
-  });
+  }) : super(key: key);
 
   final void Function(BuildContext context)? onInit;
   final void Function(BuildContext context)? onRead;

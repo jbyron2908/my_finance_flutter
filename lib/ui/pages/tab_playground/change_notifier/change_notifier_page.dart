@@ -13,7 +13,7 @@ class ChangeNotifierPage extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           CounterWidget(),
           CounterWidget(),
         ],
@@ -23,6 +23,10 @@ class ChangeNotifierPage extends StatelessWidget {
 }
 
 class CounterWidget extends StatelessWidget {
+  const CounterWidget({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -48,7 +52,7 @@ class CounterWidget extends StatelessWidget {
             var counter = context.read<CounterPresenter>();
             return ElevatedButton(
               onPressed: () => counter.increase(),
-              child: Icon(Icons.add),
+              child: const Icon(Icons.add),
             );
           }),
           UIHelper.horizontalSpaceSmall,
@@ -57,7 +61,7 @@ class CounterWidget extends StatelessWidget {
               var counter = context.read<CounterPresenter>();
               return ElevatedButton(
                 onPressed: () => counter.decrease(),
-                child: Icon(Icons.remove),
+                child: const Icon(Icons.remove),
               );
             },
           ),

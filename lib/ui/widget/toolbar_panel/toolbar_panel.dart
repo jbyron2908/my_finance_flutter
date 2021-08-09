@@ -5,7 +5,7 @@ import 'package:my_finance_flutter_3/ui/widget/toolbar_panel/toolbar_panel_bloc.
 import 'package:provider/provider.dart';
 
 class ToolbarPanel extends StatelessWidget {
-  ToolbarPanel({
+  const ToolbarPanel({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -26,11 +26,11 @@ class ToolbarPanel extends StatelessWidget {
               height: MediaQuery.of(context).padding.top,
               color: Colors.transparent,
             ),
-            TopBar(),
+            const TopBar(),
             Expanded(
               child: child,
             ),
-            BottomBar(),
+            const BottomBar(),
           ],
         ),
       ),

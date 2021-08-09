@@ -26,42 +26,42 @@ class AppDataController extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<List<ProfileModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<ProfileRepository>();
             return repo.watchAll();
           },
         ),
         StreamProvider<List<AccountModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<AccountRepository>();
             return repo.watchAll();
           },
         ),
         StreamProvider<List<CategoryModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<CategoryRepository>();
             return repo.watchAll();
           },
         ),
         StreamProvider<List<PayeeModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<PayeeRepository>();
             return repo.watchAll();
           },
         ),
         StreamProvider<List<LabelModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<LabelRepository>();
             return repo.watchAll();
           },
         ),
         StreamProvider<List<TemplateOperationModel>>(
-          initialData: [],
+          initialData: const [],
           create: (context) {
             var repo = context.read<TemplateOperationRepository>();
             return repo.watchAll();

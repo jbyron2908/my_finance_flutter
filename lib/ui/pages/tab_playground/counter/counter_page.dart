@@ -33,7 +33,7 @@ class CounterPage extends StatelessWidget {
               onPressed: () {
                 context.read<Counter>().increase();
               },
-              child: Text('Increase'),
+              child: const Text('Increase'),
             ),
           ],
         ),

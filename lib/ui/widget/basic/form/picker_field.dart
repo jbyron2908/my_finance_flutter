@@ -6,17 +6,11 @@ class PickerField<T> extends FormField<T> {
   final String Function(T?) buildTitle;
   final Future<T?> Function() onTap;
 
-  @override
-  final FormFieldSetter<T>? onSaved;
-
-  @override
-  final FormFieldValidator<T>? validator;
-
   PickerField({
     Key? key,
     T? initialValue,
-    this.onSaved,
-    this.validator,
+    FormFieldSetter<T>? onSaved,
+    String? Function(T?)? validator,
     required this.onTap,
     required this.label,
     required this.buildTitle,
@@ -43,7 +37,7 @@ class PickerField<T> extends FormField<T> {
                       isFocused: isFocused.value,
                       decoration: InputDecoration(
                         labelText: label,
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         errorText: field.errorText,
                       ),
                       child: Text(

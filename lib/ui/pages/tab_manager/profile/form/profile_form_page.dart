@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:my_finance_flutter_3/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
 import 'package:my_finance_flutter_3/ui/widget/bottom_action_bar/bottom_action_bar.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +8,10 @@ import 'package:provider/provider.dart';
 import 'profile_form_bloc.dart';
 
 class ProfileFormPage extends StatelessWidget {
+  ProfileFormPage({
+    Key? key,
+  }) : super(key: key);
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -29,7 +33,7 @@ class ProfileFormPage extends StatelessWidget {
                   if (validated == true) {
                     formKey.currentState?.save();
                     await bloc.save();
-                    await context.router.pop();
+                    await AppRouter.navigateBack(context);
                   }
                 },
               ),

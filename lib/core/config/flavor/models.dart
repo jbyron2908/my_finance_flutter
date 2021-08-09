@@ -1,6 +1,6 @@
-enum FlavorType { DEV, PRODUCTION }
+enum FlavorType { dev, production }
 
-FlavorType currentFlavor = FlavorType.DEV;
+FlavorType currentFlavor = FlavorType.dev;
 
 class FlavorValues {
   FlavorValues({

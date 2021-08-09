@@ -3,10 +3,10 @@ import 'package:my_finance_flutter_3/core/domain/model/operation_state/operation
 
 class OperationStateConstants {
   static OperationStateModel paid =
-      OperationStateModel(id: 'paid', title: 'Paid');
+      const OperationStateModel(id: 'paid', title: 'Paid');
 
   static OperationStateModel pending =
-      OperationStateModel(id: 'pending', title: 'Pending');
+      const OperationStateModel(id: 'pending', title: 'Pending');
 
   static List<OperationStateModel> operationStateList = [
     paid,

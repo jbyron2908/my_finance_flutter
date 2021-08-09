@@ -11,7 +11,7 @@ Future<T?> showSideSheet<T>({
     barrierLabel: 'SidePanel',
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0.5),
-    transitionDuration: Duration(milliseconds: 300),
+    transitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (context, animation1, animation2) {
       return Align(
         alignment: (rightSide ? Alignment.centerRight : Alignment.centerLeft),
@@ -24,7 +24,7 @@ Future<T?> showSideSheet<T>({
               ? DismissDirection.startToEnd
               : DismissDirection.endToStart,
           child: Material(
-            child: Container(
+            child: SizedBox(
               height: double.infinity,
               child: builder(context),
             ),
@@ -36,7 +36,7 @@ Future<T?> showSideSheet<T>({
       return SlideTransition(
         position: Tween(
           begin: Offset((rightSide ? 1 : -1), 0),
-          end: Offset(0, 0),
+          end: const Offset(0, 0),
         ).animate(animation1),
         child: child,
       );

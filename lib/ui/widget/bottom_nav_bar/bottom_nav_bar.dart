@@ -64,7 +64,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       builder: (context, child) {
         var state = context.watch<BottomNavBarState>();
         return AnimatedContainer(
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           height: state.isVisible ? 56 : 0,
           color: bgColor,
           child: child,
@@ -73,15 +73,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
       child: Container(
         decoration: BoxDecoration(
           color: bgColor,
-          boxShadow: [
-            const BoxShadow(
+          boxShadow: const [
+            BoxShadow(
               color: Colors.black12,
               blurRadius: 2,
             ),
           ],
         ),
         child: SafeArea(
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             height: 56,
             child: Row(
@@ -132,38 +132,35 @@ class BottomNavBarItemWidget extends StatelessWidget {
         color: backgroundColor,
         child: InkWell(
           onTap: () {
-            return onTap(index);
+            onTap(index);
           },
           child: Container(
             height: 56,
             alignment: Alignment.center,
             child: SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    IconTheme(
-                      data: IconThemeData(
-                        size: item.iconSize,
-                        color: isSelected
-                            ? item.activeColor.withOpacity(1)
-                            : item.inactiveColor,
-                      ),
-                      child: item.icon,
+              physics: const NeverScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  IconTheme(
+                    data: IconThemeData(
+                      size: item.iconSize,
+                      color: isSelected
+                          ? item.activeColor.withOpacity(1)
+                          : item.inactiveColor,
                     ),
-                    DefaultTextStyle.merge(
-                      style: TextStyle(
-                        fontSize: item.fontSize,
-                        color:
-                            isSelected ? item.activeColor : item.inactiveColor,
-                      ),
-                      maxLines: 1,
-                      child: item.title,
+                    child: item.icon,
+                  ),
+                  DefaultTextStyle.merge(
+                    style: TextStyle(
+                      fontSize: item.fontSize,
+                      color: isSelected ? item.activeColor : item.inactiveColor,
                     ),
-                  ],
-                ),
+                    maxLines: 1,
+                    child: item.title,
+                  ),
+                ],
               ),
             ),
           ),

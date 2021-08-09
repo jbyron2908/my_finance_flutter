@@ -3,10 +3,12 @@ import 'package:logger/logger.dart';
 import '../flavor/index.dart';
 
 class Log {
+  Log._();
+
   static final Logger _logger = _getLogger(Flavor.type);
 
-  static void v(dynamic message) {
-    _logger.v(message);
+  static void v(String tag, dynamic message) {
+    _logger.v("[$tag] - $message");
   }
 
   static void i(dynamic message) {
@@ -29,10 +31,10 @@ class Log {
     Logger logger;
 
     switch (flavorType) {
-      case FlavorType.DEV:
+      case FlavorType.dev:
         logger = _getDevLogger();
         break;
-      case FlavorType.PRODUCTION:
+      case FlavorType.production:
         logger = _getProdLogger();
         break;
       default:
@@ -43,7 +45,9 @@ class Log {
   }
 
   static Logger _getDevLogger() {
-    return Logger();
+    return Logger(
+      printer: PrefixPrinter(PrettyPrinter()),
+    );
   }
 
   static Logger _getProdLogger() {

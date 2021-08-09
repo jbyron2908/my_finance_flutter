@@ -1,13 +1,17 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter_3/core/config/log/logger.dart';
 import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
-import 'package:my_finance_flutter_3/ui/app/app_router.gr.dart';
+import 'package:my_finance_flutter_3/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter_3/ui/pages/tab_manager/category/list/category_list_controller.dart';
 import 'package:my_finance_flutter_3/ui/pages/tab_manager/category/select/category_select_page.dart';
 import 'package:my_finance_flutter_3/ui/widget/bottom_action_bar/bottom_action_bar.dart';
 import 'package:provider/provider.dart';
 
 class CategoryListPage extends StatelessWidget {
+  const CategoryListPage({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Provider(
@@ -20,13 +24,13 @@ class CategoryListPage extends StatelessWidget {
                 icon: Icons.self_improvement_outlined,
                 onTap: () async {
                   var result = await showCategoryMultiSelector(context);
-                  print('Result - $result');
+                  Log.i('Result - $result');
                 },
               ),
               BottomActionItem(
                 icon: Icons.add,
                 onTap: () {
-                  context.router.push(CategoryFormRoute());
+                  AppRouter.navigateToCategoryForm(context);
                 },
               ),
             ],

@@ -1,6 +1,6 @@
 import 'models.dart';
 
-FlavorType currentFlavorType = FlavorType.DEV;
+FlavorType currentFlavorType = FlavorType.dev;
 
 class Flavor {
   static FlavorType type = currentFlavorType;
@@ -9,10 +9,10 @@ class Flavor {
   static FlavorValues _getFlavorValues(FlavorType flavorType) {
     FlavorValues flavorValues;
     switch (flavorType) {
-      case FlavorType.DEV:
+      case FlavorType.dev:
         flavorValues = _getFlavorDevValues();
         break;
-      case FlavorType.PRODUCTION:
+      case FlavorType.production:
         flavorValues = _getFlavorProdValues();
         break;
       default:

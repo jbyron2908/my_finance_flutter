@@ -10,7 +10,7 @@ class ToolbarTheme {
       : backgroundColor = Colors.blue,
         topBarHeight = 48,
         bottomBarHeight = 48,
-        animationDuration = Duration(milliseconds: 200);
+        animationDuration = const Duration(milliseconds: 200);
 
   final Color backgroundColor;
   final double topBarHeight;

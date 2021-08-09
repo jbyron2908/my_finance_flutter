@@ -3,10 +3,10 @@ import 'package:my_finance_flutter_3/core/domain/model/operation_type/operation_
 
 class OperationTypeConstants {
   static OperationTypeModel deposit =
-      OperationTypeModel(id: 'deposit', title: 'Deposit');
+      const OperationTypeModel(id: 'deposit', title: 'Deposit');
 
   static OperationTypeModel withdrawal =
-      OperationTypeModel(id: 'withdrawal', title: 'Withdrawal');
+      const OperationTypeModel(id: 'withdrawal', title: 'Withdrawal');
 
   static List<OperationTypeModel> operationTypeList = [
     deposit,

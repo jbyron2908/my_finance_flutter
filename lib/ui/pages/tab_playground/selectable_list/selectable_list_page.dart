@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter_3/core/config/log/logger.dart';
 import 'package:my_finance_flutter_3/ui/pages/tab_playground/selectable_list/selectable_list_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -13,13 +14,13 @@ class SelectableListPage extends StatelessWidget {
       create: (context) => SelectableList(),
       builder: (context, _) => Column(
         children: [
-          ListWidget(),
+          const ListWidget(),
           ElevatedButton(
             onPressed: () {
-              print('Add item');
+              Log.i('Add item');
               context.read<SelectableList>().add();
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           )
         ],
       ),
@@ -43,7 +44,7 @@ class ListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return ChangeNotifierProvider(
           create: (context) => list[index],
-          builder: (context, _) => ListItemWidget(),
+          builder: (context, _) => const ListItemWidget(),
         );
       },
     );
