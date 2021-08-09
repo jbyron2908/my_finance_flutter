@@ -6,4 +6,4 @@ analyzer:
     - blueprint-templates/**.dart
   errors:
     todo: ignore
-    top_level_function_literal_block: ignore
+    invalid_annotation_target: ignore
