@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter_3/ui/navigation/app_auto_router.gr.dart';
 import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:my_finance_flutter_3/ui/widget/wrapper/lifecycle_widget.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({
@@ -15,34 +14,29 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        DebugRouter(),
         ManagerRouter(),
         PlaygroundRouter(),
+        DebugRouter(),
       ],
       builder: (context, child, animation) {
-        return LifecycleWidget(
-          onRead: (context) {
-            context.tabsRouter.setActiveIndex(initialIndex);
-          },
-          child: WillPopScope(
-            onWillPop: () async {
-              var tabsRouter = context.tabsRouter;
-              var current = tabsRouter.topMost;
+        return WillPopScope(
+          onWillPop: () async {
+            var tabsRouter = context.tabsRouter;
+            var current = tabsRouter.topMost;
 
-              if (current.stack.length > 1) {
-                await current.pop();
+            if (current.stack.length > 1) {
+              await current.pop();
+            } else {
+              if (tabsRouter.activeIndex != 0) {
+                tabsRouter.setActiveIndex(0);
               } else {
-                if (tabsRouter.activeIndex != initialIndex) {
-                  tabsRouter.setActiveIndex(initialIndex);
-                } else {
-                  return true;
-                }
+                return true;
               }
+            }
 
-              return false;
-            },
-            child: child,
-          ),
+            return false;
+          },
+          child: child,
         );
       },
       bottomNavigationBuilder: (_, tabsRouter) {
@@ -72,10 +66,19 @@ class MainPage extends StatelessWidget {
           icon: const Icon(Icons.account_balance_outlined),
         ),
       ],
-      selectedIndex: tabsRouter.activeIndex,
+      selectedIndex: getIndex(tabsRouter.activeIndex),
       onIndexChange: (index) {
-        tabsRouter.setActiveIndex(index);
+        var newIndex = index - initialIndex;
+        if (newIndex == -1) {
+          newIndex = 2;
+        }
+        tabsRouter.setActiveIndex(newIndex);
       },
     );
+  }
+
+  int getIndex(int tabsRouterIndex) {
+    var index = (tabsRouterIndex + initialIndex) % 3;
+    return index.toInt();
   }
 }

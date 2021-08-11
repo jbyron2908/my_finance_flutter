@@ -10,7 +10,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LifecycleWidget(
-      onRead: (context) async {
+      onReady: (context) async {
         await AppRouter.replaceToMain(context);
       },
       child: const Scaffold(

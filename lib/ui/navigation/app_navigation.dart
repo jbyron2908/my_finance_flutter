@@ -5,13 +5,17 @@ import 'package:my_finance_flutter_3/ui/widget/picker_modal/multi_picker_modal.d
 import 'package:my_finance_flutter_3/ui/widget/picker_modal/picker_modal.dart';
 
 class AppNavigation {
-  static Future<void> pushTo(BuildContext context,
-      {required PageRouteInfo<dynamic> route}) {
+  static Future<void> pushTo(
+    BuildContext context, {
+    required PageRouteInfo<dynamic> route,
+  }) {
     return context.router.push(route);
   }
 
-  static Future<void> replaceTo(BuildContext context,
-      {required PageRouteInfo<dynamic> route}) {
+  static Future<void> replaceTo(
+    BuildContext context, {
+    required PageRouteInfo<dynamic> route,
+  }) {
     return context.router.replace(route);
   }
 

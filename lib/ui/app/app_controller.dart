@@ -8,6 +8,7 @@ import 'package:my_finance_flutter_3/core/domain/repository/operation/operation_
 import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
+import 'package:my_finance_flutter_3/ui/navigation/app_router_observer.dart';
 import 'package:my_finance_flutter_3/ui/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,9 @@ class AppController extends StatelessWidget {
         ),
         Provider(
           create: (context) => OperationRepository(context.read()),
+        ),
+        Provider(
+          create: (context) => AppRouterObserverRegister(),
         ),
       ],
       builder: (context, _) {
