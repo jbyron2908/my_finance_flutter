@@ -1,4 +1,5 @@
 import 'package:logger/logger.dart';
+import 'package:my_finance_flutter_3/core/config/log/tag_logger_printer.dart';
 
 import '../flavor/index.dart';
 
@@ -7,24 +8,24 @@ class Log {
 
   static final Logger _logger = _getLogger(Flavor.type);
 
-  static void v(String tag, dynamic message) {
-    _logger.v("[$tag] - $message");
+  static void v(dynamic message, {String? tag}) {
+    _logger.v(LogMessage(message: message, tag: tag));
   }
 
-  static void i(dynamic message) {
-    _logger.i(message);
+  static void i(dynamic message, {String? tag}) {
+    _logger.i(LogMessage(message: message, tag: tag));
   }
 
-  static void d(dynamic message) {
-    _logger.d(message);
+  static void d(dynamic message, {String? tag}) {
+    _logger.d(LogMessage(message: message, tag: tag));
   }
 
-  static void w(dynamic message) {
-    _logger.w(message);
+  static void w(dynamic message, {String? tag}) {
+    _logger.w(LogMessage(message: message, tag: tag));
   }
 
-  static void e(dynamic message) {
-    _logger.e(message);
+  static void e(dynamic message, {String? tag}) {
+    _logger.e(LogMessage(message: message, tag: tag));
   }
 
   static Logger _getLogger(FlavorType flavorType) {
@@ -46,7 +47,7 @@ class Log {
 
   static Logger _getDevLogger() {
     return Logger(
-      printer: PrefixPrinter(PrettyPrinter()),
+      printer: TagPrefixPrinter(PrettyPrinter()),
     );
   }
 
