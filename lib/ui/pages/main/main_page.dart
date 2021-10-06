@@ -67,10 +67,17 @@ class MainPage extends StatelessWidget {
         ),
       ],
       selectedIndex: getIndex(tabsRouter.activeIndex),
-      onIndexChange: (index) {
+      onIndexChange: (index) async {
         var newIndex = index - initialIndex;
         if (newIndex == -1) {
           newIndex = 2;
+        }
+        var currentIndex = getIndex(tabsRouter.activeIndex);
+        if (index == currentIndex) {
+          var currentRouter = tabsRouter.topMost;
+          while (currentRouter.stack.length > 1) {
+            await currentRouter.pop();
+          }
         }
         tabsRouter.setActiveIndex(newIndex);
       },
