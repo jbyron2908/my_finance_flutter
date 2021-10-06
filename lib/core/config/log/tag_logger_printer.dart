@@ -15,9 +15,6 @@ class TagPrefixPrinter extends LogPrinter {
       Level.warning: warning ?? 'WARNING',
       Level.error: error ?? 'ERROR',
     };
-
-    var len = _longestPrefixLength();
-    _prefixMap.forEach((k, v) => _prefixMap[k] = '${v.padLeft(len)} ');
   }
 
   @override
@@ -33,7 +30,9 @@ class TagPrefixPrinter extends LogPrinter {
       );
 
       var realLogs = _realPrinter.log(logEvent);
-      return appendTag(realLogs, event.level, message.tag ?? defaultTag);
+      var appendedLogs =
+          appendTag(realLogs, event.level, message.tag ?? defaultTag);
+      return appendedLogs;
     } else {
       var realLogs = _realPrinter.log(event);
       return appendLevel(realLogs, event.level);
@@ -45,14 +44,6 @@ class TagPrefixPrinter extends LogPrinter {
 
   List<String> appendLevel(List<String> realLogs, Level level) =>
       realLogs.map((s) => '${_prefixMap[level]}: $s').toList();
-
-  int _longestPrefixLength() {
-    return _prefixMap.values.reduce(compFunc).length;
-  }
-
-  String compFunc(String a, String b) {
-    return a.length > b.length ? a : b;
-  }
 }
 
 class LogMessage {

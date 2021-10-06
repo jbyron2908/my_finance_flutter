@@ -47,7 +47,11 @@ class Log {
 
   static Logger _getDevLogger() {
     return Logger(
-      printer: TagPrefixPrinter(PrettyPrinter()),
+      printer: TagPrefixPrinter(
+        PrettyPrinter(
+          stackTraceBeginIndex: 2,
+        ),
+      ),
     );
   }
 
