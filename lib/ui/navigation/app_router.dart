@@ -83,10 +83,17 @@ class AppRouter {
     );
   }
 
-  static Future<void> navigateToCounter(BuildContext context) {
+  static Future<void> navigateToCounterChangeNotifier(BuildContext context) {
     return AppNavigation.pushTo(
       context,
-      route: const CounterRoute(),
+      route: const CounterChangeNotifierRoute(),
+    );
+  }
+
+  static Future<void> navigateToCounterStateNotifier(BuildContext context) {
+    return AppNavigation.pushTo(
+      context,
+      route: const CounterStateNotifierRoute(),
     );
   }
 

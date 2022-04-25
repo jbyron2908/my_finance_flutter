@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:state_notifier/state_notifier.dart';
 
-class Counter with ChangeNotifier {
-  int count = 0;
+class CounterStateNotifier extends StateNotifier<int> {
+  CounterStateNotifier([int state = 0]) : super(state);
 
   void increase() {
-    count++;
-    notifyListeners();
+    state++;
   }
 }
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({
+class CounterStateNotifierPage extends StatelessWidget {
+  const CounterStateNotifierPage({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Counter(),
+    return StateNotifierProvider<CounterStateNotifier, int>(
+      create: (context) => CounterStateNotifier(),
       builder: (context, _) => Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Builder(
               builder: (context) {
-                var count = context.watch<Counter>().count;
+                var count = context.watch<int>();
                 return Text('Counter: $count');
               },
             ),
             ElevatedButton(
               onPressed: () {
-                context.read<Counter>().increase();
+                context.read<CounterStateNotifier>().increase();
               },
               child: const Text('Increase'),
             ),
