@@ -22,7 +22,7 @@ class MainPage extends StatelessWidget {
         return WillPopScope(
           onWillPop: () async {
             var tabsRouter = context.tabsRouter;
-            var current = tabsRouter.topMost;
+            var current = tabsRouter.topMostRouter();
 
             if (current.stack.length > 1) {
               await current.pop();
@@ -74,7 +74,7 @@ class MainPage extends StatelessWidget {
         }
         var currentIndex = getIndex(tabsRouter.activeIndex);
         if (index == currentIndex) {
-          var currentRouter = tabsRouter.topMost;
+          var currentRouter = tabsRouter.topMostRouter();
           while (currentRouter.stack.length > 1) {
             await currentRouter.pop();
           }
