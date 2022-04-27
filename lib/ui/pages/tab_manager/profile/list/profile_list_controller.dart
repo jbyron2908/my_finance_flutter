@@ -1,18 +1,23 @@
 import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
 import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
-import 'package:rxdart/subjects.dart';
+import 'package:my_finance_flutter_3/ui/widget/wrapper/controlled_widget.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
-class ProfileListController {
+class ProfileListController extends WidgetController {
   ProfileListController(this.profileRepository);
 
   final ProfileRepository profileRepository;
 
-  final BehaviorSubject<ProfileListState> state =
-      BehaviorSubject.seeded(Loading());
+  final RxNotifier<ProfileListState> state = RxNotifier(Loading());
+
+  @override
+  void onReady() {
+    watch();
+  }
 
   void watch() async {
     var profileStream = await profileRepository.watchAll();
-    state.add(Idle(profileStream));
+    state.value = Idle(profileStream);
   }
 
   Future deleteProfile(ProfileModel profile) {
@@ -25,7 +30,15 @@ abstract class ProfileListState {}
 class Loading implements ProfileListState {}
 
 class Idle implements ProfileListState {
-  Idle(this.profileListStream);
+  Idle(
+    this.profileListStream,
+  ) {
+    var count1 = 0;
+    count = RxNotifier(count1);
+    profileList = profileListStream.asRx();
+  }
 
   final Stream<List<ProfileModel>> profileListStream;
+  late RxNotifier<int> count;
+  late RxStream<List<ProfileModel>> profileList;
 }
