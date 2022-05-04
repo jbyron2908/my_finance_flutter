@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/**.jorm.dart
+    - lib/**.g.dart
+    - lib/**.gr.dart
+    - lib/**.freezed.dart
+    - blueprint-templates/**.dart
+  errors:
+    todo: ignore
+    invalid_annotation_target: ignore
