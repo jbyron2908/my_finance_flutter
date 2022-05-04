@@ -19,5 +19,8 @@
   "peacock.color": "#2f4f4f",
   "dart.analysisExcludedFolders": [
     "blueprint-templates"
-  ]
+  ],
+  "blueprint.templatesPath": [
+    ".blueprint-templates",
+  ],
 }
