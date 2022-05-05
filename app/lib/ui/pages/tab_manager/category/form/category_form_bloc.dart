@@ -1,6 +1,5 @@
-import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/icon/icon_model.dart';
-import 'package:my_finance_flutter_3/core/domain/repository/category/category_repository.dart';
+import 'package:database_domain/domain.dart';
+import 'package:my_finance_flutter/core/domain/repository/category/category_repository.dart';
 
 class CategoryFormBloc {
   CategoryFormBloc(this.categoryRepository);

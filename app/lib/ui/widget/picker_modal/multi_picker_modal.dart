@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:my_finance_flutter_3/ui/widget/basic/form/text_field.dart';
-import 'package:my_finance_flutter_3/ui/widget/keyboard_avoider/keyboard_avoider.dart';
+import 'package:my_finance_flutter/ui/widget/basic/form/text_field.dart';
+import 'package:my_finance_flutter/ui/widget/keyboard_avoider/keyboard_avoider.dart';
 import 'package:provider/provider.dart';
 
 Future<List<T>?> showMultiPickerBottomSheet<T>({

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/navigation/app_auto_router.gr.dart';
-import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:my_finance_flutter/ui/navigation/app_auto_router.gr.dart';
+import 'package:my_finance_flutter/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({

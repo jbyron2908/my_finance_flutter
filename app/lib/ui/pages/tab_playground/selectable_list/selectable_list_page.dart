@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/core/config/log/logger.dart';
-import 'package:my_finance_flutter_3/ui/pages/tab_playground/selectable_list/selectable_list_bloc.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
+import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selectable_list_bloc.dart';
 import 'package:provider/provider.dart';
 
 class SelectableListPage extends StatelessWidget {

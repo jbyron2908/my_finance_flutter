@@ -1,8 +1,8 @@
+import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/core/config/log/logger.dart';
-import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-import 'package:my_finance_flutter_3/ui/navigation/app_router.dart';
-import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
+import 'package:my_finance_flutter/ui/navigation/app_router.dart';
+import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({

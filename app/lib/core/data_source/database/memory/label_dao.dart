@@ -1,5 +1,5 @@
-import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
-import 'package:my_finance_flutter_3/core/domain/model/label/label_model.dart';
+import 'package:database_domain/domain.dart';
+import 'package:my_finance_flutter/core/data_source/database/contract/database_contract.dart';
 import 'package:rxdart/subjects.dart';
 
 class MemoryLabelDao implements LabelDao {

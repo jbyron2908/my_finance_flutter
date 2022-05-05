@@ -1,6 +1,6 @@
-import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
-import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
-import 'package:my_finance_flutter_3/ui/widget/wrapper/controlled_widget.dart';
+import 'package:database_domain/domain.dart';
+import 'package:my_finance_flutter/core/domain/repository/profile/profile_repository.dart';
+import 'package:my_finance_flutter/ui/widget/wrapper/controlled_widget.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class ProfileListController extends WidgetController {

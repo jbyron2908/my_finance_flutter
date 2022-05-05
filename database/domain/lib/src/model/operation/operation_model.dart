@@ -1,12 +1,12 @@
+import 'package:database_domain/src/model/account/account_model.dart';
+import 'package:database_domain/src/model/category/category_model.dart';
+import 'package:database_domain/src/model/meta/meta_model.dart';
+import 'package:database_domain/src/model/operation_state/operation_state_model.dart';
+import 'package:database_domain/src/model/operation_type/operation_type_model.dart';
+import 'package:database_domain/src/model/payee/payee_model.dart';
+import 'package:database_domain/src/model/profile/profile_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/operation_state/operation_state_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/operation_type/operation_type_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
 
 part 'operation_model.freezed.dart';
 part 'operation_model.g.dart';

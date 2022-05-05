@@ -1,5 +1,5 @@
-import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
-import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
+import 'package:database_domain/domain.dart';
+import 'package:my_finance_flutter/core/data_source/database/contract/database_contract.dart';
 
 abstract class BaseRepository<T> {
   Future<DatabaseDao<T>> getDao();

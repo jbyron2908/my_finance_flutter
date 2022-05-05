@@ -1,10 +1,4 @@
-import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/label/label_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/operation/operation_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/template_operation/template_operation_model.dart';
+import 'package:database_domain/domain.dart';
 
 abstract class DatabaseClient {
   Future<ProfileDao> profileDao();

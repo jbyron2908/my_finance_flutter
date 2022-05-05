@@ -1,6 +1,6 @@
+import 'package:database_domain/src/model/meta/meta_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
 
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';

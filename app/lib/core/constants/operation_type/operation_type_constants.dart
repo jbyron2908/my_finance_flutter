@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:my_finance_flutter_3/core/domain/model/operation_type/operation_type_model.dart';
+import 'package:database_domain/domain.dart';
 
 class OperationTypeConstants {
   static OperationTypeModel deposit =

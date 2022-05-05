@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:my_finance_flutter_3/ui/pages/tab_manager/management/management_page.dart';
+import 'package:my_finance_flutter/ui/pages/tab_manager/management/management_page.dart';
 
 import 'category/pages.dart';
 import 'payee/pages.dart';

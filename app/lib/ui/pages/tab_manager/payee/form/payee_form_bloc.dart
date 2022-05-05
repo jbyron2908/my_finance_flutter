@@ -1,5 +1,5 @@
-import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
+import 'package:database_domain/domain.dart';
+import 'package:my_finance_flutter/core/domain/repository/payee/payee_repository.dart';
 
 class PayeeFormBloc {
   PayeeFormBloc(this.payeeRepository);

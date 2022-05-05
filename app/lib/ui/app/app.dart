@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/app/app_controller.dart';
-import 'package:my_finance_flutter_3/ui/navigation/app_auto_router.gr.dart';
-import 'package:my_finance_flutter_3/ui/navigation/app_router_observer.dart';
+import 'package:my_finance_flutter/ui/app/app_controller.dart';
+import 'package:my_finance_flutter/ui/navigation/app_auto_router.gr.dart';
+import 'package:my_finance_flutter/ui/navigation/app_router_observer.dart';
 import 'package:provider/provider.dart';
 
 class MyFinanceApp extends StatelessWidget {

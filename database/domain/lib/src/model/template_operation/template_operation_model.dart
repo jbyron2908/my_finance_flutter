@@ -1,8 +1,8 @@
-import 'package:domain/model/category/category_model.dart';
-import 'package:domain/model/meta/meta_model.dart';
-import 'package:domain/model/operation_state/operation_state_model.dart';
-import 'package:domain/model/operation_type/operation_type_model.dart';
-import 'package:domain/model/payee/payee_model.dart';
+import 'package:database_domain/src/model/category/category_model.dart';
+import 'package:database_domain/src/model/meta/meta_model.dart';
+import 'package:database_domain/src/model/operation_state/operation_state_model.dart';
+import 'package:database_domain/src/model/operation_type/operation_type_model.dart';
+import 'package:database_domain/src/model/payee/payee_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

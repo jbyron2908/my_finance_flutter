@@ -1,11 +1,11 @@
-import 'package:my_finance_flutter_3/core/data_source/database/contract/database_contract.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/account_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/category_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/label_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/operation_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/payee_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/profile_dao.dart';
-import 'package:my_finance_flutter_3/core/data_source/database/memory/template_operation_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/contract/database_contract.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/account_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/category_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/label_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/operation_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/payee_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/profile_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/memory/template_operation_dao.dart';
 
 class MemoryDatabaseClient implements DatabaseClient {
   final _accountDao = MemoryAccountDao();

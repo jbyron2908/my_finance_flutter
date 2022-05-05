@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/widget/helper/ui_helpers.dart';
+import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
 import 'package:provider/provider.dart';
 
 class ChangeNotifierPage extends StatelessWidget {

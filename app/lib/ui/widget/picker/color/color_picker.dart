@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/core/constants/color/color.dart';
+import 'package:my_finance_flutter/core/constants/color/color.dart';
 
 class ColorPicker extends StatelessWidget {
   static Future<Color?> show(BuildContext context) async {

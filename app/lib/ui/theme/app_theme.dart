@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/theme/toolbar/toolbar_theme.dart';
+import 'package:my_finance_flutter/ui/theme/toolbar/toolbar_theme.dart';
 import 'package:provider/provider.dart';
 
 class AppThemeProvider with ChangeNotifier {

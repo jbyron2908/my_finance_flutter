@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:domain/model/icon/icon_model.dart';
+import 'package:database_domain/src/model/icon/icon_model.dart';
 import 'package:flutter/material.dart';
 
 class IconConverter {

@@ -1,7 +1,7 @@
+import 'package:database_domain/src/model/icon/icon_model.dart';
+import 'package:database_domain/src/model/meta/meta_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_finance_flutter_3/core/domain/model/icon/icon_model.dart';
-import 'package:my_finance_flutter_3/core/domain/model/meta/meta_model.dart';
 
 part 'category_model.freezed.dart';
 part 'category_model.g.dart';

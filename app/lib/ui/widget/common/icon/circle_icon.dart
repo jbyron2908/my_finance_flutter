@@ -1,6 +1,6 @@
+import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_finance_flutter_3/core/domain/model/icon/icon_model.dart';
 
 class CircleIcon extends StatelessWidget {
   const CircleIcon(

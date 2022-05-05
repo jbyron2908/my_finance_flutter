@@ -1,4 +1,4 @@
-import 'package:domain/model/meta/meta_model.dart';
+import 'package:database_domain/src/model/meta/meta_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

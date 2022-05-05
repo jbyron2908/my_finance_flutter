@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:my_finance_flutter/ui/widget/bottom_nav_bar/bottom_nav_bar.dart';
 
 class BottomNavBarScrollObserver extends StatelessWidget {
   const BottomNavBarScrollObserver({

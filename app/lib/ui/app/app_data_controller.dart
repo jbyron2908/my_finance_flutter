@@ -1,16 +1,16 @@
 // import 'package:flutter/material.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/account/account_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/category/category_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/label/label_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/payee/payee_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/profile/profile_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/model/template_operation/template_operation_model.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/account/account_repository.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/category/category_repository.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/label/label_repository.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/payee/payee_repository.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/profile/profile_repository.dart';
-// import 'package:my_finance_flutter_3/core/domain/repository/template_operation/template_operation_repository.dart';
+// import 'package:database_domain/src/model/account/account_model.dart';
+// import 'package:database_domain/src/model/category/category_model.dart';
+// import 'package:database_domain/src/model/label/label_model.dart';
+// import 'package:database_domain/src/model/payee/payee_model.dart';
+// import 'package:database_domain/src/model/profile/profile_model.dart';
+// import 'package:database_domain/src/model/template_operation/template_operation_model.dart';
+// import 'package:my_finance_flutter/core/domain/repository/account/account_repository.dart';
+// import 'package:my_finance_flutter/core/domain/repository/category/category_repository.dart';
+// import 'package:my_finance_flutter/core/domain/repository/label/label_repository.dart';
+// import 'package:my_finance_flutter/core/domain/repository/payee/payee_repository.dart';
+// import 'package:my_finance_flutter/core/domain/repository/profile/profile_repository.dart';
+// import 'package:my_finance_flutter/core/domain/repository/template_operation/template_operation_repository.dart';
 // import 'package:provider/provider.dart';
 
 // class AppDataController extends StatelessWidget {

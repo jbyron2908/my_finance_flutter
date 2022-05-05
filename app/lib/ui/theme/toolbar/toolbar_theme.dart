@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter_3/ui/theme/app_theme.dart';
+import 'package:my_finance_flutter/ui/theme/app_theme.dart';
 
 class ToolbarTheme {
   static ToolbarTheme of(BuildContext context) {

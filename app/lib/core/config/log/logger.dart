@@ -1,5 +1,5 @@
 import 'package:logger/logger.dart';
-import 'package:my_finance_flutter_3/core/config/log/tag_logger_printer.dart';
+import 'package:my_finance_flutter/core/config/log/tag_logger_printer.dart';
 
 import '../flavor/index.dart';
 
