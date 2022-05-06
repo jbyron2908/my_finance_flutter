@@ -11,7 +11,7 @@ class AppRouter {
   }
 
   static Future<void> replaceToMain(BuildContext context) {
-    return AppNavigation.replaceTo(
+    return AppNavigation.pushTo(
       context,
       route: const MainRouter(),
     );
