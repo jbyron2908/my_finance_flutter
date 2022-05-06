@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/app_controller.dart';
 import 'package:my_finance_flutter/ui/navigation/app_auto_router.gr.dart';
-import 'package:my_finance_flutter/ui/navigation/app_router_observer.dart';
+import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
 
 class MyFinanceApp extends StatelessWidget {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final appRouter = AppRouter();
+  final appRouter = AppAutoRouter();
 
   @override
   Widget build(BuildContext context) {

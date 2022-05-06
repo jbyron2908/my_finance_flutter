@@ -8,8 +8,8 @@ import 'package:my_finance_flutter/core/domain/repository/operation/operation_re
 import 'package:my_finance_flutter/core/domain/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/core/domain/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter/core/domain/repository/template_operation/template_operation_repository.dart';
-import 'package:my_finance_flutter/ui/navigation/app_router_observer.dart';
 import 'package:my_finance_flutter/ui/theme/app_theme.dart';
+import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
 
 class AppController extends StatelessWidget {

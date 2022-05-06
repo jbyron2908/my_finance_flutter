@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/profile/list/profile_list_controller.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/profile/select/profile_select_page.dart';
 import 'package:my_finance_flutter/ui/widget/bottom_action_bar/bottom_action_bar.dart';
 import 'package:my_finance_flutter/ui/widget/wrapper/controlled_widget.dart';
+import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 

@@ -15,6 +15,7 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/counter_state_notifie
 import 'package:my_finance_flutter/ui/pages/tab_playground/playground/playground_page.dart';
 import 'package:my_finance_flutter/ui/pages/tab_playground/rx_counter/rx_counter_page.dart';
 import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selectable_list_page.dart';
+import 'package:navigation/navigation.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -26,11 +27,11 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selec
     ),
     AutoRoute(
       name: 'MainRouter',
-      path: '/main',
+      path: '/${Routes.main}',
       page: MainPage,
       children: [
         AutoRoute(
-          path: 'debug',
+          path: Routes.debug,
           name: 'DebugRouter',
           page: EmptyRouterPage,
           children: [
@@ -42,7 +43,7 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selec
           ],
         ),
         AutoRoute(
-          path: 'manager',
+          path: Routes.manager,
           name: 'ManagerRouter',
           page: EmptyRouterPage,
           children: [
@@ -52,33 +53,33 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selec
               initial: true,
             ),
             AutoRoute(
-              path: 'profile/list',
+              path: Routes.profileList,
               page: ProfileListPage,
             ),
             AutoRoute(
-              path: 'profile/form',
+              path: Routes.profileForm,
               page: ProfileFormPage,
             ),
             AutoRoute(
-              path: 'category/list',
+              path: Routes.categoryList,
               page: CategoryListPage,
             ),
             AutoRoute(
-              path: 'category/form',
+              path: Routes.categoryForm,
               page: CategoryFormPage,
             ),
             AutoRoute(
-              path: 'payee/list',
+              path: Routes.payeeList,
               page: PayeeListPage,
             ),
             AutoRoute(
-              path: 'payee/form',
+              path: Routes.payeeForm,
               page: PayeeFormPage,
             ),
           ],
         ),
         AutoRoute(
-          path: 'playground',
+          path: Routes.playground,
           name: 'PlaygroundRouter',
           page: EmptyRouterPage,
           children: [
@@ -88,23 +89,23 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selec
               initial: true,
             ),
             AutoRoute(
-              path: 'counter_change_notifier',
+              path: Routes.counterChangeNotifier,
               page: CounterChangeNotifierPage,
             ),
             AutoRoute(
-              path: 'counter_state_notifier',
+              path: Routes.counterStateNotifier,
               page: CounterStateNotifierPage,
             ),
             AutoRoute(
-              path: 'rx_counter',
+              path: Routes.counterRx,
               page: RxCounterPage,
             ),
             AutoRoute(
-              path: 'selectable_list',
+              path: Routes.selectableList,
               page: SelectableListPage,
             ),
             AutoRoute(
-              path: 'change_notifier',
+              path: Routes.changeNotifier,
               page: ChangeNotifierPage,
             ),
           ],
@@ -118,4 +119,4 @@ import 'package:my_finance_flutter/ui/pages/tab_playground/selectable_list/selec
     ),
   ],
 )
-class $AppRouter {}
+class $AppAutoRouter {}

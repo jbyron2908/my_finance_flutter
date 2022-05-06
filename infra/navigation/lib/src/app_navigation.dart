@@ -1,18 +1,25 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:my_finance_flutter/ui/widget/picker_modal/multi_picker_modal.dart';
-import 'package:my_finance_flutter/ui/widget/picker_modal/picker_modal.dart';
+import 'package:navigation/src/widget/picker_modal/multi_picker_modal.dart';
+import 'package:navigation/src/widget/picker_modal/picker_modal.dart';
 
 class AppNavigation {
-  static Future<void> pushTo(
+  static Future<dynamic> pushTo(
     BuildContext context, {
     required PageRouteInfo<dynamic> route,
   }) {
     return context.router.push(route);
   }
 
-  static Future<void> replaceTo(
+  static Future<dynamic> pushToNamed(
+    BuildContext context, {
+    required String path,
+  }) {
+    return context.router.pushNamed(path);
+  }
+
+  static Future<dynamic> replaceTo(
     BuildContext context, {
     required PageRouteInfo<dynamic> route,
   }) {
@@ -59,25 +66,4 @@ class AppNavigation {
       },
     );
   }
-}
-
-class RoutePaths {
-  static const root = "/";
-
-  static const main = "/main";
-
-  static const debug = "/debug";
-
-  static const management = "/management";
-  static const profile = "/profile";
-  static const profileForm = "/profileform";
-  static const category = "/category";
-  static const categoryForm = "/categoryform";
-  static const payee = "/payee";
-  static const payeeForm = "/payeeform";
-
-  static const playground = "/playground";
-  static const counter = "/counter";
-  static const selectableList = "/selectable_list";
-  static const changeNotifier = "/change_notifier";
 }

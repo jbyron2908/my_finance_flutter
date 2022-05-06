@@ -1,8 +1,8 @@
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
+import 'package:navigation/navigation.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({
@@ -40,7 +40,7 @@ class ManagementPage extends StatelessWidget {
           title: const Text('Payees'),
           leading: const Icon(Icons.people),
           onTap: () {
-            AppRouter.navigateToPayee(context, onResult);
+            AppRouter.navigateToPayee(context);
           },
         ),
       ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/ui/navigation/app_router.dart';
 import 'package:my_finance_flutter/ui/widget/basic/side_sheet/side_sheet.dart';
 import 'package:my_finance_flutter/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
+import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
 
 class PlaygroundPage extends StatelessWidget {
