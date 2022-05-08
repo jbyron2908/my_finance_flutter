@@ -23,4 +23,5 @@
   "blueprint.templatesPath": [
     ".blueprint-templates",
   ],
+  "dart.runPubGetOnPubspecChanges": true,
 }
