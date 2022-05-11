@@ -1,13 +1,15 @@
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/constants/icon/icon.dart';
-import 'package:my_finance_flutter/ui/widget/common/icon/circle_icon.dart';
+import 'package:theme/src/widget/common/icon/circle_icon.dart';
 
 class IconPicker extends StatelessWidget {
-  static Future<IconData?> show(BuildContext context) async {
+  static Future<IconData?> show(
+    BuildContext context,
+    List<IconData> colorList,
+  ) async {
     return showDialog<IconData>(
       context: context,
-      builder: (context) => const IconPicker(IconConstants.iconList),
+      builder: (context) => IconPicker(colorList),
       barrierDismissible: true,
     );
   }

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/payee/list/payee_list_controller.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/payee/select/payee_select_page.dart';
-import 'package:my_finance_flutter/ui/widget/bottom_action_bar/bottom_action_bar.dart';
-import 'package:my_finance_flutter/ui/widget/wrapper/lifecycle_widget.dart';
 import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/widget.dart';
 
 class PayeeListPage extends StatelessWidget {
   const PayeeListPage({

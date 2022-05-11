@@ -1,8 +1,7 @@
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/widget/picker_modal/multi_picker_modal.dart';
-import 'package:my_finance_flutter/ui/widget/picker_modal/picker_modal.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/widget.dart';
 
 Future<CategoryModel?> showCategorySelector(BuildContext context) {
   return showPickerBottomSheet(

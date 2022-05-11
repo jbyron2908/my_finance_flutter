@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/constants/color/color.dart';
 
 class ColorPicker extends StatelessWidget {
-  static Future<Color?> show(BuildContext context) async {
+  static Future<Color?> show(
+    BuildContext context,
+    List<Color> colorList,
+  ) async {
     return showDialog<Color>(
       context: context,
-      builder: (context) => const ColorPicker(ColorConstants.colorList),
+      builder: (context) => ColorPicker(colorList),
       barrierDismissible: true,
     );
   }

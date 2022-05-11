@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/theme/toolbar/toolbar_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/src/theme/toolbar/toolbar_theme.dart';
 
 class AppThemeProvider with ChangeNotifier {
   AppTheme appTheme = AppTheme.light();

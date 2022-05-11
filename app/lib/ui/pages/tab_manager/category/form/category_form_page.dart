@@ -2,12 +2,9 @@ import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/category/select/category_select_page.dart';
-import 'package:my_finance_flutter/ui/widget/basic/form/picker_field.dart';
-import 'package:my_finance_flutter/ui/widget/basic/form/text_field.dart';
-import 'package:my_finance_flutter/ui/widget/bottom_action_bar/bottom_action_bar.dart';
-import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
 import 'package:navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/widget.dart';
 
 import 'category_form_bloc.dart';
 

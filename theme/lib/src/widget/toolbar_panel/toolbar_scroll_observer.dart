@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/src/widget/toolbar_panel/toolbar_panel_bloc.dart';
 
 class ToolbarScrollObserver extends StatelessWidget {
   const ToolbarScrollObserver({

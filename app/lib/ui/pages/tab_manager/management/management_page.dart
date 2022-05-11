@@ -1,8 +1,8 @@
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
 import 'package:navigation/navigation.dart';
+import 'package:theme/widget.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({

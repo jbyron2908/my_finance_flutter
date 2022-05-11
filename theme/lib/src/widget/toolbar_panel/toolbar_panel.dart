@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/theme/toolbar/toolbar_theme.dart';
-import 'package:my_finance_flutter/ui/widget/helper/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/widget/toolbar_panel/toolbar_panel_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:theme/src/theme/toolbar/toolbar_theme.dart';
+import 'package:theme/src/widget/helper/ui_helpers.dart';
+import 'package:theme/src/widget/toolbar_panel/toolbar_panel_bloc.dart';
 
 class ToolbarPanel extends StatelessWidget {
   const ToolbarPanel({

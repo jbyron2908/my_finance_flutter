@@ -13,6 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  theme:
+    path: ../theme
   database_domain:
     path: ../infra/database/domain
   navigation:

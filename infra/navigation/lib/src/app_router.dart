@@ -138,8 +138,6 @@ class Routes {
 }
 
 class _RoutePaths {
-  static const root = "/";
-
   static const main = "/${Routes.main}";
 
   static const debug = "$main/${Routes.debug}";
