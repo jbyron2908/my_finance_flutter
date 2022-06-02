@@ -16,10 +16,10 @@ class ControlledWidget<T extends WidgetController> extends StatefulWidget {
   final Widget Function(BuildContext, T) builder;
 
   @override
-  _ControlledWidgetState<T> createState() => _ControlledWidgetState<T>();
+  ControlledWidgetState<T> createState() => ControlledWidgetState<T>();
 }
 
-class _ControlledWidgetState<T extends WidgetController>
+class ControlledWidgetState<T extends WidgetController>
     extends State<ControlledWidget<T>> with StackAware {
   var initialized = false;
   AppRouterObserverRegister? routerObserverRegister;
@@ -29,7 +29,7 @@ class _ControlledWidgetState<T extends WidgetController>
     if (initialized == false) {
       initialized = true;
       widget.widgetController.onInit();
-      SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
         widget.widgetController.onReady();
       });
     }
@@ -55,7 +55,7 @@ class _ControlledWidgetState<T extends WidgetController>
 
   @override
   void dispose() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.widgetController.onDispose();
     });
     routerObserverRegister?.unsubscribe(this);
@@ -64,14 +64,14 @@ class _ControlledWidgetState<T extends WidgetController>
 
   @override
   void onTopStack() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.widgetController.onTopStack();
     });
   }
 
   @override
   void onBackStack() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.widgetController.onBackStack();
     });
   }

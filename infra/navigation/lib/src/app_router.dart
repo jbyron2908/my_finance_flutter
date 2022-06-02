@@ -1,114 +1,114 @@
-import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:navigation/src/app_navigation.dart';
 
 class AppRouter {
   AppRouter._();
 
-  static Future<bool> navigateBack(BuildContext context, {Object? result}) {
-    return AppNavigation.pop(context, result: result);
+  static Future<bool> navigateBack(StackRouter router, {Object? result}) {
+    return AppNavigation.pop(router, result: result);
   }
 
-  static Future<void> replaceToMain(BuildContext context) {
+  static Future<void> replaceToMain(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.main,
     );
   }
 
-  static Future<void> navigateToDebug(BuildContext context) {
+  static Future<void> navigateToDebug(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.debug,
     );
   }
 
-  static Future<void> navigateToManagement(BuildContext context) {
+  static Future<void> navigateToManagement(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.manager,
     );
   }
 
-  static Future<void> navigateToProfile(BuildContext context) {
+  static Future<void> navigateToProfile(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.profileList,
     );
   }
 
-  static Future<void> navigateToProfileForm(BuildContext context) {
+  static Future<void> navigateToProfileForm(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.profileForm,
     );
   }
 
-  static Future<void> navigateToCategory(BuildContext context) {
+  static Future<void> navigateToCategory(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.categoryList,
     );
   }
 
-  static Future<void> navigateToCategoryForm(BuildContext context) {
+  static Future<void> navigateToCategoryForm(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.categoryForm,
     );
   }
 
-  static Future<void> navigateToPayee(BuildContext context) {
+  static Future<void> navigateToPayee(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.payeeList,
     );
   }
 
-  static Future<void> navigateToPayeeForm(BuildContext context) {
+  static Future<void> navigateToPayeeForm(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.payeeForm,
     );
   }
 
-  static Future<void> navigateToPlayground(BuildContext context) {
+  static Future<void> navigateToPlayground(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.playground,
     );
   }
 
-  static Future<void> navigateToCounterChangeNotifier(BuildContext context) {
+  static Future<void> navigateToCounterChangeNotifier(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.counterChangeNotifier,
     );
   }
 
-  static Future<void> navigateToCounterStateNotifier(BuildContext context) {
+  static Future<void> navigateToCounterStateNotifier(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.counterStateNotifier,
     );
   }
 
-  static Future<void> navigateToCounterRx(BuildContext context) {
+  static Future<void> navigateToCounterRx(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.counterRx,
     );
   }
 
-  static Future<void> navigateToSelectableList(BuildContext context) {
+  static Future<void> navigateToSelectableList(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.selectableList,
     );
   }
 
-  static Future<void> navigateToChangeNotifier(BuildContext context) {
+  static Future<void> navigateToChangeNotifier(StackRouter router) {
     return AppNavigation.pushToNamed(
-      context,
+      router,
       path: _RoutePaths.changeNotifier,
     );
   }

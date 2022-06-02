@@ -6,31 +6,31 @@ import 'package:navigation/src/widget/picker_modal/picker_modal.dart';
 
 class AppNavigation {
   static Future<dynamic> pushTo(
-    BuildContext context, {
+    StackRouter router, {
     required PageRouteInfo<dynamic> route,
   }) {
-    return context.router.push(route);
+    return router.push(route);
   }
 
   static Future<dynamic> pushToNamed(
-    BuildContext context, {
+    StackRouter router, {
     required String path,
   }) {
-    return context.router.pushNamed(path);
+    return router.pushNamed(path);
   }
 
   static Future<dynamic> replaceTo(
-    BuildContext context, {
+    StackRouter router, {
     required PageRouteInfo<dynamic> route,
   }) {
-    return context.router.replace(route);
+    return router.replace(route);
   }
 
   static Future<bool> pop(
-    BuildContext context, {
+    StackRouter router, {
     Object? result,
   }) {
-    return context.router.pop(result);
+    return router.pop(result);
   }
 
   static Future<T?> showPickerBottomSheet<T>({

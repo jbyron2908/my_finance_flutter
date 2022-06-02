@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BottomNavBarState with ChangeNotifier {
+class BottomNavBarViewModel with ChangeNotifier {
   bool _isVisible = true;
   bool get isVisible => _isVisible;
 
@@ -22,7 +22,7 @@ class BottomNavBarState with ChangeNotifier {
 }
 
 class BottomNavBar extends StatefulWidget {
-  static BottomNavBarState of(BuildContext context) => context.read();
+  static BottomNavBarViewModel of(BuildContext context) => context.read();
 
   const BottomNavBar({
     Key? key,
@@ -40,10 +40,10 @@ class BottomNavBar extends StatefulWidget {
   final Color? backgroundColor;
 
   @override
-  _BottomNavBarState createState() => _BottomNavBarState();
+  BottomNavBarState createState() => BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class BottomNavBarState extends State<BottomNavBar> {
   int indexSelected = 0;
 
   @override
@@ -60,9 +60,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
     var indexList = List.generate(widget.items.length, (index) => index);
 
     return ChangeNotifierProvider(
-      create: (context) => BottomNavBarState(),
+      create: (context) => BottomNavBarViewModel(),
       builder: (context, child) {
-        var state = context.watch<BottomNavBarState>();
+        var state = context.watch<BottomNavBarViewModel>();
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           height: state.isVisible ? 56 : 0,

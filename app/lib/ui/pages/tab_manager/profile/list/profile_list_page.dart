@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/ui/pages/tab_manager/profile/list/profile_list_controller.dart';
@@ -30,7 +31,7 @@ class ProfileListPage extends StatelessWidget {
               BottomActionItem(
                 icon: Icons.add,
                 onTap: () {
-                  AppRouter.navigateToProfileForm(context);
+                  AppRouter.navigateToProfileForm(context.router);
                 },
               ),
             ],

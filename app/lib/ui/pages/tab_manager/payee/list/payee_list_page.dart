@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
@@ -41,7 +42,7 @@ class PayeeListPage extends StatelessWidget {
               BottomActionItem(
                 icon: Icons.add,
                 onTap: () {
-                  AppRouter.navigateToPayeeForm(context);
+                  AppRouter.navigateToPayeeForm(context.router);
                 },
               ),
             ],

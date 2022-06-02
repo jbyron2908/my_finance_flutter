@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
@@ -23,21 +24,21 @@ class PlaygroundPage extends StatelessWidget {
             title: const Text('Counter ChangeNotifier'),
             leading: const FaIcon(Icons.add),
             onTap: () {
-              AppRouter.navigateToCounterChangeNotifier(context);
+              AppRouter.navigateToCounterChangeNotifier(context.router);
             },
           ),
           ListTile(
             title: const Text('Counter StateNotifier'),
             leading: const FaIcon(Icons.add),
             onTap: () {
-              AppRouter.navigateToCounterStateNotifier(context);
+              AppRouter.navigateToCounterStateNotifier(context.router);
             },
           ),
           ListTile(
             title: const Text('Selectable List'),
             leading: const FaIcon(Icons.add),
             onTap: () {
-              AppRouter.navigateToSelectableList(context);
+              AppRouter.navigateToSelectableList(context.router);
             },
           ),
           // ListTile(
@@ -59,7 +60,7 @@ class PlaygroundPage extends StatelessWidget {
             title: const Text('Change notifier'),
             leading: const FaIcon(Icons.add),
             onTap: () {
-              AppRouter.navigateToChangeNotifier(context);
+              AppRouter.navigateToChangeNotifier(context.router);
             },
           ),
           ListTile(
@@ -99,7 +100,7 @@ class PlaygroundPage extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 Log.i('Index select was $index');
-                                AppRouter.navigateBack(context);
+                                AppRouter.navigateBack(context.router);
                               },
                               child: Text('Button $index'),
                             ),

@@ -25,10 +25,10 @@ class LifecycleWidget extends StatefulWidget {
   final Widget child;
 
   @override
-  _LifecycleWidgetState createState() => _LifecycleWidgetState();
+  LifecycleWidgetState createState() => LifecycleWidgetState();
 }
 
-class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
+class LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
   var initialized = false;
   AppRouterObserverRegister? routerObserverRegister;
 
@@ -37,7 +37,7 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
     if (initialized == false) {
       initialized = true;
       widget.onInit?.call(context);
-      SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
         widget.onReady?.call(context);
       });
     }
@@ -60,7 +60,7 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
 
   @override
   void dispose() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.onDispose?.call(context);
     });
     routerObserverRegister?.unsubscribe(this);
@@ -69,14 +69,14 @@ class _LifecycleWidgetState extends State<LifecycleWidget> with StackAware {
 
   @override
   void onTopStack() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.onTopStack?.call(context);
     });
   }
 
   @override
   void onBackStack() {
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       widget.onBackStack?.call(context);
     });
   }

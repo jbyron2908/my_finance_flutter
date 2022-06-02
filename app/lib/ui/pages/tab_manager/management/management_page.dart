@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
@@ -18,7 +19,7 @@ class ManagementPage extends StatelessWidget {
           title: const Text('Profiles'),
           leading: const Icon(Icons.account_circle),
           onTap: () {
-            AppRouter.navigateToProfile(context);
+            AppRouter.navigateToProfile(context.router);
           },
         ),
         UIHelper.horizontalDivider,
@@ -32,7 +33,7 @@ class ManagementPage extends StatelessWidget {
           title: const Text('Categories'),
           leading: const Icon(Icons.category),
           onTap: () {
-            AppRouter.navigateToCategory(context);
+            AppRouter.navigateToCategory(context.router);
           },
         ),
         UIHelper.horizontalDivider,
@@ -40,7 +41,7 @@ class ManagementPage extends StatelessWidget {
           title: const Text('Payees'),
           leading: const Icon(Icons.people),
           onTap: () {
-            AppRouter.navigateToPayee(context);
+            AppRouter.navigateToPayee(context.router);
           },
         ),
       ],

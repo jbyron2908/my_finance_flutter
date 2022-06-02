@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:database_domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -34,7 +35,7 @@ class CategoryFormPage extends StatelessWidget {
                   if (validated == true) {
                     formKey.currentState?.save();
                     await bloc.save();
-                    await AppRouter.navigateBack(context);
+                    await AppRouter.navigateBack(context.router);
                   }
                 },
               ),
