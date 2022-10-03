@@ -14,9 +14,11 @@
     "statusBar.foreground": "#e7e7e7",
     "sash.hoverBorder": "#426f6f",
     "statusBarItem.remoteBackground": "#2f4f4f",
-    "statusBarItem.remoteForeground": "#e7e7e7"
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799"
   },
   "peacock.color": "#2f4f4f",
+  "peacock.affectActivityBar": false,
   "dart.analysisExcludedFolders": [
     "blueprint-templates"
   ],
